@@ -1,5 +1,7 @@
 {
-  "name": "Chrome Extension Webpack",
+  "name": "Wavma Browser",
+  "version": "0.0.1",
+  "permissions": ["activeTab", "storage"],
   "options_page": "options.html",
   "background": {
     "page": "background.html"
@@ -8,6 +10,17 @@
     "default_popup": "popup.html",
     "default_icon": "icon-34.png"
   },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://news.ycombinator.com/",
+        "https://lineto.com/*",
+        "<all_urls>"
+      ],
+      "run_at": "document_end",
+      "js": ["content.bundle.js"]
+    }
+  ],
   "icons": {
     "128": "icon-128.png"
   },
