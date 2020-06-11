@@ -7,6 +7,7 @@ export default function(div) {
     height: 360px;
     background: #F4F4F5;
     border-bottom: 1px solid #E1E2EA;
+    margin: 0;
     overflow: hidden;
     transform-origin: center;
   `;
@@ -15,37 +16,22 @@ export default function(div) {
     position: relative;
     width: 500px;
     height: 300px;
-    background: #fff;
+    margin: 0;
   `;
 
-  const textareaStyle = `
-    position: relative;
-    width: 100%;
-    color: #000;
-    background: transparent;
-    padding: 2rem;
-    font-size: 40px;
-    line-height: 1.2;
-    border: none;
-    resize: none;
-    z-index: 1;
-  `;
   const svgStyle = `
     position: absolute;
     top: 0;
     left: 0;
+    margin: 0;
   `;
 
   render(
     div,
     /*html*/ `
-    <div style="${canvasStyle}" class="canvas">
+    <div style="${canvasStyle}" class="wavma-canvas">
     <div class="canvas-zoom">
       <div id="svg" style="${artboardStyle}">
-        <textarea rows="4" style="${textareaStyle}" spellcheck="false" class="js-textarea">Copal
-Dimensions
-Dwellito
-Mythopedia</textarea>
         <svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="${svgStyle}">
           <rect width="500" height="300" fill="#A6FFDF"/>
           <path d="M83.9999 177.989H172.176L109.934 109.264H172.176L109.934 44.4286L172.176 44.4286L109.934 -23L320 -23" stroke="white" stroke-width="31.1209"/>

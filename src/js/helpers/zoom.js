@@ -1,5 +1,5 @@
 export default function() {
-  const canvas = $(".canvas")[0];
+  const canvas = $(".wavma-canvas")[0];
   const canvasRect = canvas.getBoundingClientRect();
   const canvasX = canvasRect.x;
   const canvasY = canvasRect.y;

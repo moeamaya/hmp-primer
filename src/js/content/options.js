@@ -5,13 +5,14 @@ export default function(div) {
     display: flex;
     height: calc(100% - 408px);
     overflow: auto;
+    margin: 0;
   `;
 
   const renderWebsiteStyles = () => {
     const websiteStyle = `
       flex: 0 50%;
       border-right: 1px solid #E1E2EA;
-      padding: 1.5rem;
+      padding: 24px;
     `;
 
     const buttonStyle = `
@@ -20,9 +21,9 @@ export default function(div) {
       font-family: sans-serif;
       color: #4a4c5e;
       border: 1px solid #EDEEF2;
-      margin: 1rem 0 1rem;
+      margin: 16px 0 16px;
       height: 37px;
-      padding: 0 1rem;
+      padding: 0 16px;
       border-radius: 4px;
     `;
 
@@ -42,7 +43,8 @@ export default function(div) {
   const renderDesignStyles = () => {
     const designStyle = `
       flex: 0 50%;
-      padding: 1.5rem;
+      padding: 24px;
+      margin: 0;
     `;
 
     return /*html*/ `
@@ -73,7 +75,9 @@ const searchStyles = () => {
 const setFontFamily = (e) => {
   if (e.target.classList.contains("font")) {
     const family = e.target.dataset.family;
-    $(".js-textarea")[0].style.fontFamily = family;
+    const svg = document.getElementById("svg");
+    const texts = svg.getElementsByTagName("text");
+    Array.from(texts).forEach((text) => (text.style.fontFamily = family));
   }
 };
 

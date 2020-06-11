@@ -5,33 +5,31 @@ import canvas from "./content/canvas";
 import options from "./content/options";
 bling();
 
-const style = `
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 560px;
-  height: 100%;
-  z-index: 9999999;
-  background-color: #ffffff;
-  box-shadow: 0 0 20px -5px rgba(0,0,0,0.1);
-  transform: translateZ(0);
-`;
-
 const init = () => {
   console.log("init");
   render();
 };
 
+const wavma = document.createElement("div");
+wavma.classList.add("wavma");
+
 const render = () => {
-  const div = document.createElement("div");
-  div.style = style;
-  div.classList.add("wavma");
-  document.body.appendChild(div);
+  document.body.appendChild(wavma);
 
   // render plugin
-  nav(div);
-  canvas(div);
-  options(div);
+  nav(wavma);
+  canvas(wavma);
+  options(wavma);
 };
 
 init();
+
+// Toggle Wavma
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  let display = wavma.style.display;
+  if (display !== "none") {
+    wavma.style.display = "none";
+  } else {
+    wavma.style.display = "block";
+  }
+});

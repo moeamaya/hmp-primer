@@ -5,17 +5,19 @@ export default function(div) {
     display:flex;
     align-items: center;
     height: 48px;
-    padding: 0 1rem;
+    width: 100%;
+    padding: 0 16px;
     border-bottom: 1px solid #E1E2EA;
   `;
   const logoStyle = `
-    margin-right: 1.5rem;
+    margin: 0;
+    margin-right: 24px;
   `;
 
   render(
     div,
     /*html*/ `
-    <nav style="${navStyle}">
+    <div style="${navStyle}">
       <div style="${logoStyle}">
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="14" viewBox="0 0 21 14" fill="none">
           <path d="M1 1H20" stroke="#0018ED" stroke-width="2" stroke-linecap="round"/>
@@ -23,7 +25,7 @@ export default function(div) {
           <path d="M1 13H20" stroke="#0018ED" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </div>
-      <div>
+      <div style="margin:0">
         <svg width="79" height="22" viewBox="0 0 79 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.41555 0.280007L7.21565 10.7696L10.6619 0.280007H14.0221L17.4683 10.7696L20.2684 0.280007H24.684L19.8377 16.5206H15.5298L12.342 7.10795L9.15418 16.5206H4.84633L0 0.280007H4.41555Z" fill="#0018ED"/>
           <path d="M30.2196 15.2929L28.3241 9.88651L26.4287 15.2929H30.2196ZM31.3396 18.5022H25.3086L24.3394 21.3239H19.8377L26.0194 5.08326H30.6288L36.8106 21.3239H32.3089L31.3396 18.5022Z" fill="#0018ED"/>
@@ -32,7 +34,30 @@ export default function(div) {
           <path d="M46.8586 21.6733L49.6587 11.1837L53.105 21.6733H56.4652L59.9114 11.1837L62.7115 21.6733H67.1271L62.2808 5.43268H57.9729L54.7851 14.8453L51.5973 5.43268H47.2894L42.4431 21.6733H46.8586Z" fill="#0018ED"/>
         </svg>
       </div>
-    </nav>
+      <div style="margin-left:auto">
+        <label for="wavma-upload">
+          <div>Upload</div>
+        </label>
+        <input id="wavma-upload" class="js-image-input" type="file" style="display:none">
+      </div>
+    </div>
   `
   );
+  $("#wavma-upload")[0].on("change", triggerFile);
 }
+
+const triggerFile = (e) => {
+  const file = e.target.files[0];
+  console.log(file);
+  loadFile(file);
+};
+
+const loadFile = (file) => {
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const html = e.target.result;
+    $("#svg")[0].innerHTML = html;
+  };
+  reader.readAsText(file);
+};
