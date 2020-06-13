@@ -34,7 +34,6 @@ export default function() {
       width: parseFloat(svg.getAttribute("width")),
       height: parseFloat(svg.getAttribute("height")),
     };
-    console.log(svgRect);
 
     scale = (canvasRect.width - 40) / svgRect.width;
 

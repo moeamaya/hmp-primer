@@ -2,7 +2,6 @@ import render from "../helpers/render";
 
 export default function(div) {
   const optionsStyle = `
-    display: flex;
     height: calc(100% - 408px);
     overflow: auto;
     margin: 0;
@@ -58,8 +57,10 @@ export default function(div) {
     div,
     /*html*/ `
     <div class="wavma-options" style="${optionsStyle}">
-      ${renderWebsiteStyles()}
-      ${renderDesignStyles()}
+      <div style="display:flex">
+        ${renderWebsiteStyles()}
+        ${renderDesignStyles()}
+      </div>
     </div>
   `
   );

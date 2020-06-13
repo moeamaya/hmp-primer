@@ -43,4 +43,11 @@ export default function(div) {
     </div>
   `
   );
+
+  const svg = document.getElementById("svg");
+  const texts = Array.from(svg.querySelectorAll("text"));
+  texts.forEach((text) => {
+    const size = text.getAttribute("font-size");
+    if (size) text.style.fontSize = size;
+  });
 }

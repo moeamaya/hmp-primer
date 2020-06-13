@@ -53,7 +53,14 @@ export default function(div, zoom) {
 
     reader.onload = (e) => {
       const html = e.target.result;
-      $("#svg")[0].innerHTML = html;
+      const svg = document.getElementById("svg");
+
+      svg.innerHTML = html;
+      const texts = Array.from(svg.querySelectorAll("text"));
+      texts.forEach((text) => {
+        const size = text.getAttribute("font-size");
+        if (size) text.style.fontSize = size;
+      });
       zoom.setZoom();
     };
     reader.readAsText(file);
