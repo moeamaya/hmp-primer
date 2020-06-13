@@ -48,7 +48,7 @@ export default function(div) {
     `;
 
     return /*html*/ `
-      <div style="${designStyle}">
+      <div style="${designStyle}" class="wavma-options">
         Design
       </div>
     `;
@@ -57,7 +57,7 @@ export default function(div) {
   render(
     div,
     /*html*/ `
-    <div style="${optionsStyle}">
+    <div class="wavma-options" style="${optionsStyle}">
       ${renderWebsiteStyles()}
       ${renderDesignStyles()}
     </div>
@@ -89,7 +89,11 @@ const loadFonts = (fonts) => {
   const fontsList = $(".js-fonts")[0];
   const fontsHTML = fonts
     .map((font) => {
-      if (firstFont(font) === "Inter") return;
+      if (
+        firstFont(font) === "-apple-system" ||
+        firstFont(font) === "sans-serif"
+      )
+        return;
       return /*html*/ `
       <li class="font" data-family='${font}'>
         ${firstFont(font)}

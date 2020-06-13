@@ -1,6 +1,5 @@
 import render from "../helpers/render";
-
-export default function(div) {
+export default function(div, zoom) {
   const navStyle = `
     display:flex;
     align-items: center;
@@ -17,7 +16,7 @@ export default function(div) {
   render(
     div,
     /*html*/ `
-    <div style="${navStyle}">
+    <div style="${navStyle}" class="wavma-nav">
       <div style="${logoStyle}">
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="14" viewBox="0 0 21 14" fill="none">
           <path d="M1 1H20" stroke="#0018ED" stroke-width="2" stroke-linecap="round"/>
@@ -43,21 +42,22 @@ export default function(div) {
     </div>
   `
   );
+
+  const triggerFile = (e) => {
+    const file = e.target.files[0];
+    loadFile(file);
+  };
+
+  const loadFile = (file) => {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const html = e.target.result;
+      $("#svg")[0].innerHTML = html;
+      zoom.setZoom();
+    };
+    reader.readAsText(file);
+  };
+
   $("#wavma-upload")[0].on("change", triggerFile);
 }
-
-const triggerFile = (e) => {
-  const file = e.target.files[0];
-  console.log(file);
-  loadFile(file);
-};
-
-const loadFile = (file) => {
-  const reader = new FileReader();
-
-  reader.onload = (e) => {
-    const html = e.target.result;
-    $("#svg")[0].innerHTML = html;
-  };
-  reader.readAsText(file);
-};
