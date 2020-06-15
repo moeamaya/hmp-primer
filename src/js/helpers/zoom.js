@@ -45,7 +45,7 @@ export default function() {
   };
 
   function scaleFactor(scale) {
-    return scale * 0.04;
+    return Math.sqrt(scale) * 0.02;
   }
 
   function render() {
@@ -64,10 +64,7 @@ export default function() {
           const xs = (e.clientX - canvasX - xoff) / scale;
           const ys = (e.clientY - canvasY - yoff) / scale;
 
-          let delta = e.wheelDelta ? e.wheelDelta : -e.deltaY;
-          delta > 0
-            ? (scale += scaleFactor(scale))
-            : (scale -= scaleFactor(scale));
+          scale -= e.deltaY * scaleFactor(scale);
 
           scale = scale > 0.1 ? scale : 0.1;
           scale = scale < 50 ? scale : 50;

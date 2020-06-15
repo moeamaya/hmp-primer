@@ -12,6 +12,7 @@ export default function(div) {
       flex: 0 50%;
       border-right: 1px solid #E1E2EA;
       padding: 24px;
+      min-height: 100%;
     `;
 
     const buttonStyle = `
@@ -57,7 +58,7 @@ export default function(div) {
     div,
     /*html*/ `
     <div class="wavma-options" style="${optionsStyle}">
-      <div style="display:flex">
+      <div style="display:flex;min-height:100%;">
         ${renderWebsiteStyles()}
         ${renderDesignStyles()}
       </div>
