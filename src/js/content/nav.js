@@ -1,5 +1,7 @@
+import opentype from "opentype.js";
 import render from "../helpers/render";
-export default function(div, zoom) {
+
+export default function(div, zoom, getFontState) {
   const navStyle = `
     display:flex;
     align-items: center;
@@ -33,7 +35,8 @@ export default function(div, zoom) {
           <path d="M46.8586 21.6733L49.6587 11.1837L53.105 21.6733H56.4652L59.9114 11.1837L62.7115 21.6733H67.1271L62.2808 5.43268H57.9729L54.7851 14.8453L51.5973 5.43268H47.2894L42.4431 21.6733H46.8586Z" fill="#0018ED"/>
         </svg>
       </div>
-      <div style="margin-left:auto">
+      <div style="margin-left:auto;display:flex">
+        <div id="wavma-download">Download</div>
         <label for="wavma-upload">
           <div>Upload</div>
         </label>
@@ -66,5 +69,54 @@ export default function(div, zoom) {
     reader.readAsText(file);
   };
 
+  const downloadFile = (e) => {
+    const font = getFontState();
+    console.log("Font: " + font);
+
+    console.log(getFonts());
+
+    // document.fonts.ready.then(function() {
+    //   const fontFaces = Array.from(document.fonts.values());
+    //   console.log(fontFaces);
+    //   const selected = fontFaces.find((ff) => ff["family"] == "Canela Web");
+    //   console.log(selected);
+
+    //   console.log("There are", document.fonts.size, "FontFaces loaded.\n");
+
+    //   // document.fonts has a Set-like interface. Here, we're iterating over its values.
+    //   for (var fontFace of document.fonts.values()) {
+    //     console.log("  " + "family: " + fontFace["family"]);
+    //   }
+
+    //   opentype.load(selected, function(err, font) {
+    //     console.log(err);
+    //     console.log(font);
+    //   });
+    // });
+  };
+
   $("#wavma-upload")[0].on("change", triggerFile);
+  $("#wavma-download")[0].on("click", downloadFile);
+}
+
+function getFonts(obj) {
+  var o = obj || {},
+    sheet = document.styleSheets,
+    rule = null,
+    i = sheet.length,
+    j;
+  while (0 <= --i) {
+    rule = sheet[i].rules || sheet[i].cssRules || [];
+    j = rule.length;
+    while (0 <= --j) {
+      if (rule[j].constructor.name === "CSSFontFaceRule") {
+        if (!(rule[j].style.fontFamily in o))
+          o[rule[j].style.fontFamily] = Object.create(null);
+        o[rule[j].style.fontFamily][
+          rule[j].style.fontWeight + "-" + rule[j].style.fontStyle
+        ] = rule[j].style.src;
+      }
+    }
+  }
+  return o;
 }

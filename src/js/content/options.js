@@ -1,6 +1,6 @@
 import render from "../helpers/render";
 
-export default function(div) {
+export default function(div, setFontState) {
   const optionsStyle = `
     height: calc(100% - 408px);
     overflow: auto;
@@ -66,21 +66,22 @@ export default function(div) {
   `
   );
   $(".js-search").on("click", searchStyles);
-  $(".js-fonts").on("click", setFontFamily);
+  $(".js-fonts").on("click", (e) => setFontFamily(e, setFontState));
 }
 
-const searchStyles = () => {
-  searchAllFonts();
-  searchAllColors();
-};
-
-const setFontFamily = (e) => {
+const setFontFamily = (e, setFontState) => {
   if (e.target.classList.contains("font")) {
     const family = e.target.dataset.family;
     const svg = document.getElementById("svg");
     const texts = svg.getElementsByTagName("text");
     Array.from(texts).forEach((text) => (text.style.fontFamily = family));
+    setFontState(family);
   }
+};
+
+const searchStyles = () => {
+  searchAllFonts();
+  searchAllColors();
 };
 
 const firstFont = (font) => {

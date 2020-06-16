@@ -7,6 +7,7 @@ import options from "./content/options";
 bling();
 
 let started = false;
+let fontState = "";
 const zm = zoom();
 
 const init = () => {
@@ -20,13 +21,20 @@ const render = () => {
   document.body.appendChild(wavma);
 
   // render plugin
-  nav(wavma, zm);
+  nav(wavma, zm, getFontState);
   canvas(wavma);
-  options(wavma);
+  options(wavma, setFontState);
 
   // start zoom
   zm.init();
 };
+
+const getFontState = () => fontState;
+
+const setFontState = (font) => {
+  fontState = font;
+};
+
 init();
 
 // Toggle Wavma
