@@ -26,6 +26,9 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
+.wavma-export {
+  margin-right: 8px;
+}
 
 .canvas-zoom {
   position: relative;

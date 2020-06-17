@@ -29,7 +29,7 @@ export default function(div) {
     <div style="${canvasStyle}" class="wavma-canvas">
     <div class="canvas-zoom">
       <div id="svg" style="${artboardStyle}">
-        <svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="${svgStyle}">
+        <svg id="wavma-svg" width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="${svgStyle}">
           <rect width="500" height="300" fill="#A6FFDF"/>
           <path d="M83.9999 177.989H172.176L109.934 109.264H172.176L109.934 44.4286L172.176 44.4286L109.934 -23L320 -23" stroke="white" stroke-width="31.1209"/>
           <path d="M320 43.132L218.857 43.132" stroke="white" stroke-width="31.1209"/>

@@ -1,5 +1,6 @@
 import opentype from "opentype.js";
 import render from "../helpers/render";
+import { saveSvgAsPng } from "save-svg-as-png";
 
 export default function(div, zoom, getFontState) {
   const navStyle = `
@@ -36,7 +37,7 @@ export default function(div, zoom, getFontState) {
         </svg>
       </div>
       <div style="margin-left:auto;display:flex">
-        <div id="wavma-download">Download</div>
+        <div id="wavma-export" class="wavma-export">Export</div>
         <label for="wavma-upload">
           <div>Upload</div>
         </label>
@@ -70,33 +71,29 @@ export default function(div, zoom, getFontState) {
   };
 
   const downloadFile = (e) => {
-    const font = getFontState();
-    console.log("Font: " + font);
-
-    console.log(getFonts());
-
+    // const font = getFontState();
+    // console.log("Font: " + font);
+    // console.log(getFonts());
     // document.fonts.ready.then(function() {
-    //   const fontFaces = Array.from(document.fonts.values());
-    //   console.log(fontFaces);
-    //   const selected = fontFaces.find((ff) => ff["family"] == "Canela Web");
-    //   console.log(selected);
-
-    //   console.log("There are", document.fonts.size, "FontFaces loaded.\n");
-
-    //   // document.fonts has a Set-like interface. Here, we're iterating over its values.
-    //   for (var fontFace of document.fonts.values()) {
-    //     console.log("  " + "family: " + fontFace["family"]);
-    //   }
-
-    //   opentype.load(selected, function(err, font) {
-    //     console.log(err);
-    //     console.log(font);
-    //   });
+    // const fontFaces = Array.from(document.fonts.values());
+    // console.log(fontFaces);
+    // // const selected = fontFaces.find((ff) => ff["family"] == "Canela Web");
+    // // console.log(selected);
+    // console.log("There are", document.fonts.size, "FontFaces loaded.\n");
+    // opentype.load("Canela Web", function(err, font) {
+    //   console.log(err);
+    //   console.log(font);
     // });
+    // });
+    const parent = document.getElementById("svg");
+    const svg = parent.querySelector("svg");
+    saveSvgAsPng(svg, "wavma.png", {
+      scale: 2.0,
+    });
   };
 
   $("#wavma-upload")[0].on("change", triggerFile);
-  $("#wavma-download")[0].on("click", downloadFile);
+  $("#wavma-export")[0].on("click", downloadFile);
 }
 
 function getFonts(obj) {
