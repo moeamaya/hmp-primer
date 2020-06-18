@@ -77,6 +77,7 @@ export default function() {
           yoff -= e.deltaY - start.y * scale;
         }
 
+        window.scale = scale;
         render();
       },
       { passive: false }

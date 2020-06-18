@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 560px;
+  width: 960px;
   height: 100%;
   z-index: 9999999;
   background-color: #ffffff;
@@ -30,6 +30,19 @@
   margin-right: 8px;
 }
 
+.wavma-main {
+  display: flex;
+  height: 100%;
+}
+.wavma-options {
+  height: 100%;
+  width: 280px;
+  flex: 0 0 280px;
+  margin: 0;
+  overflow: auto;
+  border-right: 1px solid #e1e2ea;
+  padding: 24px;
+}
 .canvas-zoom {
   position: relative;
   width: 100%;

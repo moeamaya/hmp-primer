@@ -22,8 +22,13 @@ const render = () => {
 
   // render plugin
   nav(wavma, zm, getFontState);
-  canvas(wavma);
-  options(wavma, setFontState);
+
+  const main = document.createElement("div");
+  main.classList.add("wavma-main");
+  wavma.appendChild(main);
+
+  options(main, setFontState);
+  canvas(main);
 
   // start zoom
   zm.init();

@@ -1,6 +1,6 @@
 import opentype from "opentype.js";
 import render from "../helpers/render";
-import { saveSvgAsPng } from "save-svg-as-png";
+// import { saveSvgAsPng } from "save-svg-as-png";
 
 export default function(div, zoom, getFontState) {
   const navStyle = `
@@ -71,7 +71,7 @@ export default function(div, zoom, getFontState) {
   };
 
   const downloadFile = (e) => {
-    // const font = getFontState();
+    const font = getFontState();
     // console.log("Font: " + font);
     // console.log(getFonts());
     // document.fonts.ready.then(function() {
@@ -86,15 +86,47 @@ export default function(div, zoom, getFontState) {
     // });
     // });
     const parent = document.getElementById("svg");
-    const svg = parent.querySelector("svg");
-    saveSvgAsPng(svg, "wavma.png", {
-      scale: 2.0,
-    });
+    // const svg = parent.querySelector("svg");
+
+    const svg = parent.innerHTML;
+    let blob = new Blob([svg], { type: "image/svg+xml" });
+    let url = URL.createObjectURL(blob);
+    let image = document.createElement("img");
+    console.log(image);
+
+    image.src = url;
+    image.addEventListener(
+      "load",
+      (result) => {
+        console.log(result);
+        URL.revokeObjectURL(url);
+        $(".wavma-options")[0].prepend(result.currentTarget);
+      },
+      {
+        once: true,
+      }
+    );
+
+    // saveSvgAsPng(svg, `${slugify(font)}.png`, {
+    //   scale: 1.0,
+    // });
   };
 
   $("#wavma-upload")[0].on("change", triggerFile);
   $("#wavma-export")[0].on("click", downloadFile);
 }
+
+const slugify = (string) => {
+  return string
+    .toString()
+    .normalize("NFD") // split an accented letter in the base letter and the acent
+    .replace(/[\u0300-\u036f]/g, "") // remove all previously split accents
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
+};
 
 function getFonts(obj) {
   var o = obj || {},

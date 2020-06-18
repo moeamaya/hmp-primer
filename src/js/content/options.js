@@ -1,17 +1,8 @@
 import render from "../helpers/render";
 
 export default function(div, setFontState) {
-  const optionsStyle = `
-    height: calc(100% - 408px);
-    overflow: auto;
-    margin: 0;
-  `;
-
   const renderWebsiteStyles = () => {
     const websiteStyle = `
-      flex: 0 50%;
-      border-right: 1px solid #E1E2EA;
-      padding: 24px;
       min-height: 100%;
     `;
 
@@ -57,10 +48,8 @@ export default function(div, setFontState) {
   render(
     div,
     /*html*/ `
-    <div class="wavma-options" style="${optionsStyle}">
-      <div style="display:flex;min-height:100%;">
+    <div class="wavma-options">
         ${renderWebsiteStyles()}
-        ${renderDesignStyles()}
       </div>
     </div>
   `
@@ -73,8 +62,12 @@ const setFontFamily = (e, setFontState) => {
   if (e.target.classList.contains("font")) {
     const family = e.target.dataset.family;
     const svg = document.getElementById("svg");
+
     const texts = svg.getElementsByTagName("text");
     Array.from(texts).forEach((text) => (text.style.fontFamily = family));
+
+    const textareas = svg.getElementsByTagName("textarea");
+    Array.from(textareas).forEach((text) => (text.style.fontFamily = family));
     setFontState(family);
   }
 };
