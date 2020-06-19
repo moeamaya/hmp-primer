@@ -83,23 +83,22 @@ export default function(div, zoom, getFontState) {
       type: "application/octet-stream",
     });
     let url = URL.createObjectURL(blob);
-    location.href = url;
-    // let image = document.createElement("img");
-    // console.log(image);
+    // location.href = url;
+    let image = document.createElement("img");
+    console.log(image);
 
-    // image.src = url;
-    // image.addEventListener(
-    //   "load",
-    //   (result) => {
-    //     console.log(result);
-    //     window.open(url);
-    //     URL.revokeObjectURL(url);
-    //     // $(".wavma-options")[0].prepend(result.currentTarget);
-    //   },
-    //   {
-    //     once: true,
-    //   }
-    // );
+    image.src = url;
+    image.addEventListener(
+      "load",
+      (result) => {
+        console.log(result);
+        URL.revokeObjectURL(url);
+        // $(".wavma-options")[0].prepend(result.currentTarget);
+      },
+      {
+        once: true,
+      }
+    );
   };
 
   $("#wavma-upload")[0].on("change", triggerFile);
