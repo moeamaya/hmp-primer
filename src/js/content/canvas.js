@@ -65,10 +65,10 @@ export default function(div) {
     const size = text.getAttribute("font-size");
     if (size) text.style.fontSize = size;
 
-    if (text.classList.contains("replace")) {
+    if (text.classList.contains("replaceXXX")) {
       const width = text.getBoundingClientRect().width;
+      // text.style.display = "none";
 
-      text.style.display = "none";
       text.insertAdjacentHTML("afterend", textArea(text.textContent.trim()));
       const fontSize = text.getAttribute("font-size");
       const fill = text.getAttribute("fill");
@@ -85,6 +85,8 @@ export default function(div) {
       textarea.style.fontSize = fontSize;
       textarea.style.color = fill;
       textarea.setAttribute("rows", text.querySelectorAll("tspan").length);
+
+      text.remove();
     }
   });
 }

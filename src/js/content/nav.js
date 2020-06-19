@@ -1,6 +1,6 @@
 import opentype from "opentype.js";
 import render from "../helpers/render";
-// import { saveSvgAsPng } from "save-svg-as-png";
+import { saveSvgAsPng } from "save-svg-as-png";
 
 export default function(div, zoom, getFontState) {
   const navStyle = `
@@ -72,44 +72,34 @@ export default function(div, zoom, getFontState) {
 
   const downloadFile = (e) => {
     const font = getFontState();
-    // console.log("Font: " + font);
-    // console.log(getFonts());
-    // document.fonts.ready.then(function() {
-    // const fontFaces = Array.from(document.fonts.values());
-    // console.log(fontFaces);
-    // // const selected = fontFaces.find((ff) => ff["family"] == "Canela Web");
-    // // console.log(selected);
-    // console.log("There are", document.fonts.size, "FontFaces loaded.\n");
-    // opentype.load("Canela Web", function(err, font) {
-    //   console.log(err);
-    //   console.log(font);
-    // });
-    // });
     const parent = document.getElementById("svg");
     // const svg = parent.querySelector("svg");
-
-    const svg = parent.innerHTML;
-    let blob = new Blob([svg], { type: "image/svg+xml" });
-    let url = URL.createObjectURL(blob);
-    let image = document.createElement("img");
-    console.log(image);
-
-    image.src = url;
-    image.addEventListener(
-      "load",
-      (result) => {
-        console.log(result);
-        URL.revokeObjectURL(url);
-        $(".wavma-options")[0].prepend(result.currentTarget);
-      },
-      {
-        once: true,
-      }
-    );
-
     // saveSvgAsPng(svg, `${slugify(font)}.png`, {
     //   scale: 1.0,
     // });
+
+    const svg = parent.innerHTML;
+    let blob = new Blob([svg], {
+      type: "application/octet-stream",
+    });
+    let url = URL.createObjectURL(blob);
+    location.href = url;
+    // let image = document.createElement("img");
+    // console.log(image);
+
+    // image.src = url;
+    // image.addEventListener(
+    //   "load",
+    //   (result) => {
+    //     console.log(result);
+    //     window.open(url);
+    //     URL.revokeObjectURL(url);
+    //     // $(".wavma-options")[0].prepend(result.currentTarget);
+    //   },
+    //   {
+    //     once: true,
+    //   }
+    // );
   };
 
   $("#wavma-upload")[0].on("change", triggerFile);
@@ -149,3 +139,17 @@ function getFonts(obj) {
   }
   return o;
 }
+
+// console.log("Font: " + font);
+// console.log(getFonts());
+// document.fonts.ready.then(function() {
+// const fontFaces = Array.from(document.fonts.values());
+// console.log(fontFaces);
+// // const selected = fontFaces.find((ff) => ff["family"] == "Canela Web");
+// // console.log(selected);
+// console.log("There are", document.fonts.size, "FontFaces loaded.\n");
+// opentype.load("Canela Web", function(err, font) {
+//   console.log(err);
+//   console.log(font);
+// });
+// });
