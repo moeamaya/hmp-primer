@@ -1,12 +1,5 @@
 export const cny = /*html*/ `
   <svg width="375" height="800" viewBox="0 0 375 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <style>
-      text {
-        font-family: "Canela Web"
-      }
-    </style>
-  </defs>
   <g clip-path="url(#clip0)">
     <path d="M375 0H0V800H375V0Z" fill="white"></path>
     <path d="M375 96H0V284H375V96Z" fill="#F7F7F7"></path>

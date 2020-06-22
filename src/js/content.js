@@ -28,7 +28,7 @@ const render = () => {
   wavma.appendChild(main);
 
   options(main, setFontState);
-  canvas(main);
+  canvas(main, zm);
 
   // start zoom
   zm.init();

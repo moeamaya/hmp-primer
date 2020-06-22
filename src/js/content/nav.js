@@ -57,6 +57,10 @@ export default function(div, zoom, getFontState) {
 
     reader.onload = (e) => {
       const html = e.target.result;
+      chrome.storage.local.set({ svg: html }, function (result) {
+        console.log('Value set to ' + result.svg);
+      });
+
       const svg = document.getElementById("svg");
 
       svg.innerHTML = html;
@@ -73,32 +77,32 @@ export default function(div, zoom, getFontState) {
   const downloadFile = (e) => {
     const font = getFontState();
     const parent = document.getElementById("svg");
-    // const svg = parent.querySelector("svg");
-    // saveSvgAsPng(svg, `${slugify(font)}.png`, {
-    //   scale: 1.0,
-    // });
-
-    const svg = parent.innerHTML;
-    let blob = new Blob([svg], {
-      type: "application/octet-stream",
+    const svg = parent.querySelector("svg");
+    saveSvgAsPng(svg, `${slugify(font)}.png`, {
+      scale: 1.0,
     });
-    let url = URL.createObjectURL(blob);
-    // location.href = url;
-    let image = document.createElement("img");
-    console.log(image);
 
-    image.src = url;
-    image.addEventListener(
-      "load",
-      (result) => {
-        console.log(result);
-        URL.revokeObjectURL(url);
-        // $(".wavma-options")[0].prepend(result.currentTarget);
-      },
-      {
-        once: true,
-      }
-    );
+    // const svg = parent.innerHTML;
+    // let blob = new Blob([svg], {
+    //   type: "application/octet-stream",
+    // });
+    // let url = URL.createObjectURL(blob);
+    // // location.href = url;
+    // let image = document.createElement("img");
+    // console.log(image);
+
+    // image.src = url;
+    // image.addEventListener(
+    //   "load",
+    //   (result) => {
+    //     console.log(result);
+    //     URL.revokeObjectURL(url);
+    //     // $(".wavma-options")[0].prepend(result.currentTarget);
+    //   },
+    //   {
+    //     once: true,
+    //   }
+    // );
   };
 
   $("#wavma-upload")[0].on("change", triggerFile);

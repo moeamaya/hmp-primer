@@ -21,10 +21,8 @@ export default function() {
     canvasX = canvasRect.x;
     canvasY = canvasRect.y;
 
-    svg = canvas.querySelector("svg");
     node = document.querySelector(".canvas-zoom");
 
-    setZoom();
     addEventListeners();
   };
 
