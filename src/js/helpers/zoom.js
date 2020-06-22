@@ -33,13 +33,18 @@ export default function() {
       height: parseFloat(svg.getAttribute("height")),
     };
 
-    scale = (canvasRect.width - 40) / svgRect.width;
+    const deltaWidth = (canvasRect.width - 40) / svgRect.width;
+    const deltaHeight = (canvasRect.height - 100) / svgRect.height;
+
+    console.log(canvasRect.height, svgRect.height);
+    console.log(deltaHeight);
+
+    scale = deltaWidth < deltaHeight ? deltaWidth : deltaHeight;
 
     xoff = Math.abs(canvasRect.width - svgRect.width * scale) / 2;
-    yoff = Math.abs(canvasRect.height - svgRect.height * scale) / 2;
+    yoff = Math.abs(canvasRect.height - svgRect.height * scale - 50) / 2;
 
     render();
-    console.log("running again");
   };
 
   function scaleFactor(scale) {
