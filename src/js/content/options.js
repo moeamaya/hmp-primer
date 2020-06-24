@@ -60,7 +60,9 @@ export default function(div, setFontState) {
 
 const setFontFamily = (e, setFontState) => {
   if (e.target.classList.contains("font")) {
-    const family = e.target.dataset.family;
+    const familyString = e.target.dataset.family;
+    const family = hasNumber(familyString) ? `"${familyString}"` : familyString;
+
     const weight = e.target.dataset.weight;
     const svg = document.getElementById("svg");
 
@@ -86,6 +88,10 @@ const capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
+const hasNumber = (myString) => {
+  return /\d/.test(myString);
+};
+
 const renderFonts = (fonts) => {
   const fontsList = $(".js-fonts")[0];
   const fontsHTML = fonts
@@ -109,7 +115,12 @@ const searchFontFaces = () => {
 }
 
 const loadColors = (colors) => {
-  const noLoad = ["rgba(0, 0, 0, 0)", "rgb(0, 0, 0)", "rgb(255, 255, 255)"];
+  const noLoad = [
+    "rgba(0, 0, 0, 0)",
+    "rgb(0, 0, 0)",
+    "rgb(255, 255, 255)",
+    "rgba(255, 255, 255, 0)"
+  ];
 
   const colorsList = $(".js-colors")[0];
   const colorsHTML = colors

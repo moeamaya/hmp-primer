@@ -1,15 +1,16 @@
 import render from "../helpers/render";
-import { cny } from "./cny";
+import { writing } from "./writing";
 
 export default function(div, zoom) {
   renderSVG(div);
 
   chrome.storage.local.get(['svg'], function (result) {
-    let vector = cny;
-    if (result) {
+    let vector = writing;
+    if (result && result.svg) {
       vector = result.svg
     }
     const svg = document.getElementById("svg");
+
     svg.innerHTML = vector;
     zoom.setZoom();
   });
