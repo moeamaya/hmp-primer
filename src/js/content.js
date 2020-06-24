@@ -11,7 +11,7 @@ let fontState = "";
 const zm = zoom();
 
 const init = () => {
-  console.log("not init");
+  console.log("wavma");
 };
 
 const wavma = document.createElement("div");

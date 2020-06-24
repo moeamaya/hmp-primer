@@ -61,37 +61,38 @@ export default function(div, setFontState) {
 const setFontFamily = (e, setFontState) => {
   if (e.target.classList.contains("font")) {
     const family = e.target.dataset.family;
+    const weight = e.target.dataset.weight;
     const svg = document.getElementById("svg");
 
     const texts = svg.getElementsByTagName("text");
-    Array.from(texts).forEach((text) => (text.style.fontFamily = family));
+    Array.from(texts).forEach((text) => {
+      text.style.fontFamily = family;
+      text.style.fontWeight = weight;
+    });
 
     const textareas = svg.getElementsByTagName("textarea");
-    Array.from(textareas).forEach((text) => (text.style.fontFamily = family));
+    Array.from(textareas).forEach((text) => text.style.fontFamily = family);
     setFontState(family);
   }
 };
 
 const searchStyles = () => {
-  // searchAllFonts();
   searchFontFaces();
   searchAllColors();
 };
 
-const firstFont = (font) => {
-  return font.split(",")[0];
-};
-
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 const renderFonts = (fonts) => {
   const fontsList = $(".js-fonts")[0];
   const fontsHTML = fonts
   .map((font) => {
-    console.log(font);
-
     return /*html*/ `
-      <li class="font" data-family='${font}'>
-        ${font.family} <span>${font.weight}</span>
+      <li class="font" data-family="${font.family}" data-weight="${font.weight}">
+        ${capitalize(font.family)} <span>${font.weight}</span>
       </li>
     `;
   })
@@ -106,67 +107,6 @@ const searchFontFaces = () => {
     renderFonts(fontFaces);
   });
 }
-
-const loadFonts = (fonts) => {
-  const fontsList = $(".js-fonts")[0];
-  const fontsHTML = fonts
-    .map((font) => {
-      if (
-        firstFont(font) === "-apple-system" ||
-        firstFont(font) === "sans-serif"
-      )
-        return;
-      return /*html*/ `
-      <li class="font" data-family='${font}'>
-        ${firstFont(font)}
-      </li>
-    `;
-    })
-    .join("");
-
-  fontsList.innerHTML = fontsHTML;
-};
-
-
-// Fonts Ninja font search
-const searchAllFonts = () => {
-  const fonts = [];
-
-  var e = [].slice
-      .call(document.body.getElementsByTagName("*"))
-      .filter(function(e) {
-        return e.style && e.ownerDocument === document;
-      }),
-    t = {};
-  e.forEach(function(e, r) {
-    var n;
-    if (
-      "SCRIPT" !== e.tagName.toUpperCase() &&
-      "STYLE" !== e.tagName.toUpperCase()
-    ) {
-      var i = Array.from(e.childNodes).filter(function(e) {
-          return e.nodeType === e.TEXT_NODE;
-        }),
-        o =
-          i
-            .map(function(e) {
-              return e.nodeValue;
-            })
-            .join("") || e.placeholder;
-      if (o && !o.match(/^\s+$/)) {
-        var s = window.getComputedStyle(e, "");
-        if (s.fontFamily) {
-          var l = s.fontWeight,
-            u = s.fontStyle,
-            c = unescape(s.fontFamily).replace(/^"(.*)"$/, "$1");
-          fonts.indexOf(c) === -1 && fonts.push(c);
-        }
-      }
-    }
-  });
-
-  loadFonts(fonts);
-};
 
 const loadColors = (colors) => {
   const noLoad = ["rgba(0, 0, 0, 0)", "rgb(0, 0, 0)", "rgb(255, 255, 255)"];
