@@ -80,6 +80,10 @@ h5 {
   cursor: pointer;
   background: #f4f4f5;
 }
+.font span {
+  color: #8B8A93;
+}
+
 .color {
   display: flex;
 }

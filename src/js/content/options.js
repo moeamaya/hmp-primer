@@ -73,13 +73,39 @@ const setFontFamily = (e, setFontState) => {
 };
 
 const searchStyles = () => {
-  searchAllFonts();
+  // searchAllFonts();
+  searchFontFaces();
   searchAllColors();
 };
 
 const firstFont = (font) => {
   return font.split(",")[0];
 };
+
+
+const renderFonts = (fonts) => {
+  const fontsList = $(".js-fonts")[0];
+  const fontsHTML = fonts
+  .map((font) => {
+    console.log(font);
+
+    return /*html*/ `
+      <li class="font" data-family='${font}'>
+        ${font.family} <span>${font.weight}</span>
+      </li>
+    `;
+  })
+  .join("");
+
+  fontsList.innerHTML = fontsHTML;
+}
+
+const searchFontFaces = () => {
+  document.fonts.ready.then((fonts) => {
+    const fontFaces = Array.from(fonts);
+    renderFonts(fontFaces);
+  });
+}
 
 const loadFonts = (fonts) => {
   const fontsList = $(".js-fonts")[0];
@@ -100,6 +126,7 @@ const loadFonts = (fonts) => {
 
   fontsList.innerHTML = fontsHTML;
 };
+
 
 // Fonts Ninja font search
 const searchAllFonts = () => {

@@ -36,9 +36,6 @@ export default function() {
     const deltaWidth = (canvasRect.width - 40) / svgRect.width;
     const deltaHeight = (canvasRect.height - 100) / svgRect.height;
 
-    console.log(canvasRect.height, svgRect.height);
-    console.log(deltaHeight);
-
     scale = deltaWidth < deltaHeight ? deltaWidth : deltaHeight;
 
     xoff = Math.abs(canvasRect.width - svgRect.width * scale) / 2;
