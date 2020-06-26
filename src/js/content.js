@@ -27,10 +27,11 @@ const render = () => {
   main.classList.add("wavma-main");
   wavma.appendChild(main);
 
-  options(main, setFontState);
+  const opts = options(main, setFontState);
   canvas(main, zm);
 
   // start zoom
+  opts.searchFonts();
   zm.init();
 };
 

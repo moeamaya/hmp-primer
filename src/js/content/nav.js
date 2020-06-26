@@ -1,4 +1,3 @@
-import opentype from "opentype.js";
 import render from "../helpers/render";
 import { saveSvgAsPng } from "save-svg-as-png";
 
@@ -11,22 +10,11 @@ export default function(div, zoom, getFontState) {
     padding: 0 16px;
     border-bottom: 1px solid #E1E2EA;
   `;
-  const logoStyle = `
-    margin: 0;
-    margin-right: 24px;
-  `;
 
   render(
     div,
     /*html*/ `
     <div style="${navStyle}" class="wavma-nav">
-      <div style="${logoStyle}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="14" viewBox="0 0 21 14" fill="none">
-          <path d="M1 1H20" stroke="#0018ED" stroke-width="2" stroke-linecap="round"/>
-          <path d="M1 7H20" stroke="#0018ED" stroke-width="2" stroke-linecap="round"/>
-          <path d="M1 13H20" stroke="#0018ED" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
       <div style="margin:0">
         <svg width="79" height="22" viewBox="0 0 79 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.41555 0.280007L7.21565 10.7696L10.6619 0.280007H14.0221L17.4683 10.7696L20.2684 0.280007H24.684L19.8377 16.5206H15.5298L12.342 7.10795L9.15418 16.5206H4.84633L0 0.280007H4.41555Z" fill="#0018ED"/>
@@ -37,9 +25,13 @@ export default function(div, zoom, getFontState) {
         </svg>
       </div>
       <div style="margin-left:auto;display:flex">
-        <div id="wavma-export" class="wavma-export">Export</div>
-        <label for="wavma-upload">
+        <div id="wavma-export" class="wavma-export" style="display:none">Export</div>
+        <label class="wavma-label" for="wavma-upload">
           <div>Upload</div>
+          <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 11V2" stroke="#0018ED" stroke-width="1.25"/>
+            <path d="M1 5.5L5 1.5L9 5.5" stroke="#0018ED" stroke-width="1.25"/>
+          </svg>
         </label>
         <input id="wavma-upload" class="js-image-input" type="file" style="display:none">
       </div>

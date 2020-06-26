@@ -59,6 +59,17 @@ h5 {
   margin: 24px 0 12px;
 }
 
+.wavma-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  color: #0018ED;
+}
+.wavma-label svg {
+  margin-left: 8px;
+}
 .fonts,
 .colors {
   padding: 0;
@@ -69,18 +80,20 @@ h5 {
   padding-bottom: 32px;
 }
 
-.font,
+.wavma-font,
 .color {
   padding: 8px 8px;
   margin: 0 -8px;
   border-radius: 4px;
+  font-size: 14px;
+  line-height: normal;
 }
-.font:hover,
+.wavma-font:hover,
 .color:hover {
   cursor: pointer;
   background: #f4f4f5;
 }
-.font span {
+.wavma-font span {
   color: #8B8A93;
 }
 

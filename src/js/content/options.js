@@ -25,22 +25,8 @@ export default function(div, setFontState) {
 
         <h5>Font families</h5>
         <ul class="fonts js-fonts"></ul>
-        <h5>Colors</h5>
+        <h5 style="display:none">Colors</h5>
         <ul class="colors js-colors"></ul>
-      </div>
-    `;
-  };
-
-  const renderDesignStyles = () => {
-    const designStyle = `
-      flex: 0 50%;
-      padding: 24px;
-      margin: 0;
-    `;
-
-    return /*html*/ `
-      <div style="${designStyle}" class="wavma-options">
-        Design
       </div>
     `;
   };
@@ -56,14 +42,30 @@ export default function(div, setFontState) {
   );
   $(".js-search").on("click", searchStyles);
   $(".js-fonts").on("click", (e) => setFontFamily(e, setFontState));
+
+  const searchFonts = () => {
+    searchFontFaces();
+  }
+
+  return { searchFonts };
 }
 
 const setFontFamily = (e, setFontState) => {
-  if (e.target.classList.contains("font")) {
-    const familyString = e.target.dataset.family;
+  const target = e.target;
+  const parent = target.parentNode;
+  let node;
+
+  if (target.classList.contains("wavma-font")) {
+    node = target;
+  } else if (parent.classList.contains("wavma-font")) {
+    node = parent;
+  }
+
+  if (node) {
+    const familyString = node.dataset.family;
     const family = hasNumber(familyString) ? `"${familyString}"` : familyString;
 
-    const weight = e.target.dataset.weight;
+    const weight = node.dataset.weight;
     const svg = document.getElementById("svg");
 
     const texts = svg.getElementsByTagName("text");
@@ -80,7 +82,7 @@ const setFontFamily = (e, setFontState) => {
 
 const searchStyles = () => {
   searchFontFaces();
-  searchAllColors();
+  // searchAllColors();
 };
 
 const capitalize = (s) => {
@@ -97,7 +99,7 @@ const renderFonts = (fonts) => {
   const fontsHTML = fonts
   .map((font) => {
     return /*html*/ `
-      <li class="font" data-family="${font.family}" data-weight="${font.weight}">
+      <li class="wavma-font" data-family="${font.family}" data-weight="${font.weight}">
         ${capitalize(font.family)} <span>${font.weight}</span>
       </li>
     `;
