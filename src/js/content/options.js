@@ -45,16 +45,24 @@ export default function(div, setFontState) {
 
   const searchFonts = () => {
     searchFontFaces();
-  }
+  };
 
   return { searchFonts };
 }
+
+const setActive = (node) => {
+  Array.from(node.parentNode.children).forEach((n) => {
+    n.classList.remove("is-active");
+  });
+  node.classList.add("is-active");
+};
 
 const setFontFamily = (e, setFontState) => {
   const target = e.target;
   const parent = target.parentNode;
   let node;
 
+  // Captures click on link or span
   if (target.classList.contains("wavma-font")) {
     node = target;
   } else if (parent.classList.contains("wavma-font")) {
@@ -62,6 +70,7 @@ const setFontFamily = (e, setFontState) => {
   }
 
   if (node) {
+    setActive(node);
     const familyString = node.dataset.family;
     const family = hasNumber(familyString) ? `"${familyString}"` : familyString;
 
@@ -75,7 +84,7 @@ const setFontFamily = (e, setFontState) => {
     });
 
     const textareas = svg.getElementsByTagName("textarea");
-    Array.from(textareas).forEach((text) => text.style.fontFamily = family);
+    Array.from(textareas).forEach((text) => (text.style.fontFamily = family));
     setFontState(family);
   }
 };
@@ -86,9 +95,9 @@ const searchStyles = () => {
 };
 
 const capitalize = (s) => {
-  if (typeof s !== 'string') return ''
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
+  if (typeof s !== "string") return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
 
 const hasNumber = (myString) => {
   return /\d/.test(myString);
@@ -97,31 +106,33 @@ const hasNumber = (myString) => {
 const renderFonts = (fonts) => {
   const fontsList = $(".js-fonts")[0];
   const fontsHTML = fonts
-  .map((font) => {
-    return /*html*/ `
-      <li class="wavma-font" data-family="${font.family}" data-weight="${font.weight}">
+    .map((font) => {
+      return /*html*/ `
+      <li class="wavma-font" data-family="${font.family}" data-weight="${
+        font.weight
+      }">
         ${capitalize(font.family)} <span>${font.weight}</span>
       </li>
     `;
-  })
-  .join("");
+    })
+    .join("");
 
   fontsList.innerHTML = fontsHTML;
-}
+};
 
 const searchFontFaces = () => {
   document.fonts.ready.then((fonts) => {
     const fontFaces = Array.from(fonts);
     renderFonts(fontFaces);
   });
-}
+};
 
 const loadColors = (colors) => {
   const noLoad = [
     "rgba(0, 0, 0, 0)",
     "rgb(0, 0, 0)",
     "rgb(255, 255, 255)",
-    "rgba(255, 255, 255, 0)"
+    "rgba(255, 255, 255, 0)",
   ];
 
   const colorsList = $(".js-colors")[0];

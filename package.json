@@ -1,6 +1,6 @@
 {
   "name": "wavma-browser",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Wavma browser tool to test fonts and colors",
   "scripts": {
     "build": "node utils/build.js",
@@ -21,6 +21,9 @@
     "write-file-webpack-plugin": "4.5.1"
   },
   "dependencies": {
+    "1.0.2": "^1.0.0",
+    "1.0.3": "^1.0.3",
+    "@wavma/enhance": "^1.0.4",
     "opentype.js": "^1.3.3",
     "save-svg-as-png": "^1.4.17"
   }

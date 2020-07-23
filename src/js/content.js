@@ -1,21 +1,23 @@
 import "../css/content.css";
 import bling from "./helpers/bling";
-import zoom from "./helpers/zoom";
 import nav from "./content/nav";
 import canvas from "./content/canvas";
 import options from "./content/options";
+import enhance from "@wavma/enhance";
+// import enhance from "/Users/jamaya/Documents/node/enhance/dist/enhance.js";
+// import enhance from "/Users/jamaya/Documents/node/enhance/src/index.js";
 bling();
 
 let started = false;
 let fontState = "";
-const zm = zoom();
 
 const init = () => {
-  console.log("wavma");
+  // console.log("wavma");
 };
 
 const wavma = document.createElement("div");
 wavma.classList.add("wavma");
+const zm = enhance({ offset: 40 });
 
 const render = () => {
   document.body.appendChild(wavma);
@@ -30,15 +32,26 @@ const render = () => {
   const opts = options(main, setFontState);
   canvas(main, zm);
 
-  // start zoom
   opts.searchFonts();
-  zm.init();
+
+  // start zoom
+  const parent = $(".wavma-canvas")[0];
+  zm.init(parent);
 };
 
 const getFontState = () => fontState;
 
 const setFontState = (font) => {
   fontState = font;
+};
+
+const addEventListeners = () => {
+  document.body.addEventListener("click", (e) => {
+    const withinWavma = e.path.some((p) => {
+      if (p.classList) return p.classList.contains("wavma");
+    });
+    if (!withinWavma) wavma.style.display = "none";
+  });
 };
 
 init();
@@ -49,6 +62,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (!started) {
     started = true;
     render();
+    addEventListeners();
   } else if (display !== "none") {
     wavma.style.display = "none";
   } else {

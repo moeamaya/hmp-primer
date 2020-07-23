@@ -4,15 +4,17 @@ import { writing } from "./writing";
 export default function(div, zoom) {
   renderSVG(div);
 
-  chrome.storage.local.get(['svg'], function (result) {
+  chrome.storage.local.get(["svg"], function(result) {
     let vector = writing;
     if (result && result.svg) {
-      vector = result.svg
+      vector = result.svg;
     }
     const svg = document.getElementById("svg");
 
     svg.innerHTML = vector;
-    zoom.setZoom();
+
+    const element = $("#svg svg")[0];
+    zoom.element(element);
   });
 }
 
@@ -31,16 +33,16 @@ const renderSVG = (div) => {
   const artboardStyle = `
     position: relative;
     margin: 0;
+    width: 100%;
+    height: 100%;
   `;
 
   render(
     div,
     /*html*/ `
     <div style="${canvasStyle}" class="wavma-canvas">
-    <div class="canvas-zoom">
-      <div id="svg" style="${artboardStyle}">
+    <div id="svg" style="${artboardStyle}">
 
-      </div>
     </div>
     </div>
   `
@@ -52,9 +54,7 @@ const renderSVG = (div) => {
     const size = text.getAttribute("font-size");
     if (size) text.style.fontSize = size;
   });
-}
-
-
+};
 
 // if (text.classList.contains("replace")) {
 //   const width = text.getBoundingClientRect().width;

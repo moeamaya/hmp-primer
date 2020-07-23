@@ -27,7 +27,7 @@ export default function(div, zoom, getFontState) {
       <div style="margin-left:auto;display:flex">
         <div id="wavma-export" class="wavma-export" style="display:none">Export</div>
         <label class="wavma-label" for="wavma-upload">
-          <div>Upload</div>
+          <div>Upload SVG</div>
           <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 11V2" stroke="#0018ED" stroke-width="1.25"/>
             <path d="M1 5.5L5 1.5L9 5.5" stroke="#0018ED" stroke-width="1.25"/>
@@ -49,8 +49,8 @@ export default function(div, zoom, getFontState) {
 
     reader.onload = (e) => {
       const html = e.target.result;
-      chrome.storage.local.set({ svg: html }, function (result) {
-        console.log('Value set to ' + result.svg);
+      chrome.storage.local.set({ svg: html }, function(result) {
+        console.log("Value set to " + result.svg);
       });
 
       const svg = document.getElementById("svg");
@@ -61,7 +61,9 @@ export default function(div, zoom, getFontState) {
         const size = text.getAttribute("font-size");
         if (size) text.style.fontSize = size;
       });
-      zoom.setZoom();
+
+      const element = $("#svg svg")[0];
+      zoom.element(element);
     };
     reader.readAsText(file);
   };
