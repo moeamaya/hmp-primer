@@ -41,8 +41,20 @@
   margin: 0;
   overflow: auto;
   border-right: 1px solid #e1e2ea;
-  padding: 24px;
+  /* padding: 24px; */
 }
+.wavma-options__reload-button {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  height: 36px;
+  border-radius: 4px;
+}
+.wavma-options__reload-button:hover {
+  cursor: pointer;
+  background: #f4f4f5;
+}
+
 .wavma #svg svg {
   position: relative;
   transform-origin: 0px 0px;
@@ -72,6 +84,10 @@
 .wavma-label svg {
   margin-left: 8px;
 }
+.wavma .font-list {
+  padding: 0 16px;
+}
+
 .wavma .fonts,
 .wavma .colors {
   padding: 0;

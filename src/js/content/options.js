@@ -6,27 +6,30 @@ export default function(div, setFontState) {
       min-height: 100%;
     `;
 
-    const buttonStyle = `
-      display: inline-block;
+    const reloadStyle = `
       background: #fff;
       font-family: sans-serif;
-      color: #4a4c5e;
-      border: 1px solid #EDEEF2;
-      margin: 16px 0 16px;
-      height: 37px;
-      padding: 0 16px;
-      border-radius: 4px;
+      color: #0018ED;
+      border-bottom: 1px solid #EDEEF2;
+      padding: 16px 8px;
     `;
 
     return /*html*/ `
       <div style="${websiteStyle}">
-        <div>Website Styles</div>
-        <button style="${buttonStyle}" class="js-search">Load Styles</button>
-
-        <h5>Font families</h5>
-        <ul class="fonts js-fonts"></ul>
-        <h5 style="display:none">Colors</h5>
-        <ul class="colors js-colors"></ul>
+        <div style="${reloadStyle}">
+          <div class="wavma-options__reload-button">Reload fonts <span style="margin-left:auto">
+            <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.5 7.75C9.5 10.0972 7.59721 12 5.25 12C2.90279 12 1 10.0972 1 7.75C1 5.40279 2.90279 3.5 5.25 3.5" stroke="#0018ED" stroke-width="1.25"/>
+            <path d="M5 0.5V6.5L8 3.5L5 0.5Z" fill="#0018ED"/>
+            </svg>
+          </span></div>
+        </div>
+        <div class="font-list">
+          <h5>Font families</h5>
+          <ul class="fonts js-fonts"></ul>
+          <h5 style="display:none">Colors</h5>
+          <ul class="colors js-colors"></ul>
+        </div>
       </div>
     `;
   };
