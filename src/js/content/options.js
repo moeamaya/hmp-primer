@@ -1,6 +1,7 @@
 import render from "../helpers/render";
+import { writing } from "./writing";
 
-export default function(div, setFontState) {
+export default function(div, setFontState, zoom) {
   const renderWebsiteStyles = () => {
     const websiteStyle = `
       min-height: 100%;
@@ -17,7 +18,7 @@ export default function(div, setFontState) {
     return /*html*/ `
       <div style="${websiteStyle}">
         <div style="${reloadStyle}">
-          <div class="wavma-options__reload-button js-reload">Reload fonts <span class="wavma-options__reload-button-icon js-reload-icon">
+          <div class="wavma-options__reload-button js-reload">Reset template <span class="wavma-options__reload-button-icon js-reload-icon">
             <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.5 7.75C9.5 10.0972 7.59721 12 5.25 12C2.90279 12 1 10.0972 1 7.75C1 5.40279 2.90279 3.5 5.25 3.5" stroke="#0018ED" stroke-width="1.25"/>
             <path d="M5 0.5V6.5L8 3.5L5 0.5Z" fill="#0018ED"/>
@@ -46,8 +47,8 @@ export default function(div, setFontState) {
   $(".js-search").on("click", searchStyles);
   $(".js-fonts").on("click", (e) => setFontFamily(e, setFontState));
   $(".js-reload").on("click", (e) => {
-    $(".js-reload-icon")[0].classList.add("rotate");
-    setTimeout(() => $(".js-reload-icon")[0].classList.remove("rotate"), 700);
+    resetTemplate(zoom);
+    animateReset();
   });
 
   const searchFonts = () => {
@@ -56,6 +57,19 @@ export default function(div, setFontState) {
 
   return { searchFonts };
 }
+
+const resetTemplate = (zoom) => {
+  const svg = document.getElementById("svg");
+  svg.innerHTML = writing;
+  const element = $("#svg svg")[0];
+  zoom.element(element);
+};
+
+const animateReset = () => {
+  const reloadIcon = $(".js-reload-icon")[0];
+  reloadIcon.classList.add("rotate");
+  setTimeout(() => reloadIcon.classList.remove("rotate"), 700);
+};
 
 const setActive = (node) => {
   Array.from(node.parentNode.children).forEach((n) => {

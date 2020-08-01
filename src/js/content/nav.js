@@ -1,5 +1,4 @@
 import render from "../helpers/render";
-import { saveSvgAsPng } from "save-svg-as-png";
 
 export default function(div, zoom, getFontState) {
   const navStyle = `
@@ -26,6 +25,7 @@ export default function(div, zoom, getFontState) {
       </div>
       <div style="margin-left:auto;display:flex">
         <div id="wavma-export" class="wavma-export" style="display:none">Export</div>
+        <div class="wavma-help js-help">Help Docs</div>
         <label class="wavma-label" for="wavma-upload">
           <div>Upload SVG</div>
           <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,6 +41,7 @@ export default function(div, zoom, getFontState) {
 
   const triggerFile = (e) => {
     const file = e.target.files[0];
+    console.log(file);
     loadFile(file);
   };
 
@@ -49,9 +50,12 @@ export default function(div, zoom, getFontState) {
 
     reader.onload = (e) => {
       const html = e.target.result;
-      chrome.storage.local.set({ svg: html }, function(result) {
-        console.log("Value set to " + result.svg);
-      });
+      const size = e.total;
+      if (size < 5000000) {
+        chrome.storage.local.set({ svg: html }, function(result) {});
+      } else {
+        console.error("SVG file size larger than 5mb");
+      }
 
       const svg = document.getElementById("svg");
 
@@ -72,9 +76,9 @@ export default function(div, zoom, getFontState) {
     const font = getFontState();
     const parent = document.getElementById("svg");
     const svg = parent.querySelector("svg");
-    saveSvgAsPng(svg, `${slugify(font)}.png`, {
-      scale: 1.0,
-    });
+    // saveSvgAsPng(svg, `${slugify(font)}.png`, {
+    //   scale: 1.0,
+    // });
 
     // const svg = parent.innerHTML;
     // let blob = new Blob([svg], {
@@ -99,8 +103,13 @@ export default function(div, zoom, getFontState) {
     // );
   };
 
+  const goToHelp = (e) => {
+    window.open("https://wavma.com/alpha", "_blank");
+  };
+
   $("#wavma-upload")[0].on("change", triggerFile);
   $("#wavma-export")[0].on("click", downloadFile);
+  $(".js-help")[0].on("click", goToHelp);
 }
 
 const slugify = (string) => {
@@ -136,17 +145,3 @@ function getFonts(obj) {
   }
   return o;
 }
-
-// console.log("Font: " + font);
-// console.log(getFonts());
-// document.fonts.ready.then(function() {
-// const fontFaces = Array.from(document.fonts.values());
-// console.log(fontFaces);
-// // const selected = fontFaces.find((ff) => ff["family"] == "Canela Web");
-// // console.log(selected);
-// console.log("There are", document.fonts.size, "FontFaces loaded.\n");
-// opentype.load("Canela Web", function(err, font) {
-//   console.log(err);
-//   console.log(font);
-// });
-// });

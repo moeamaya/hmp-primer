@@ -29,7 +29,7 @@ const render = () => {
   main.classList.add("wavma-main");
   wavma.appendChild(main);
 
-  const opts = options(main, setFontState);
+  const opts = options(main, setFontState, zm);
   canvas(main, zm);
 
   opts.searchFonts();

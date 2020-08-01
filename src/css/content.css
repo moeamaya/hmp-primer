@@ -86,10 +86,24 @@
   font-weight: 500;
   margin: 24px 0 12px;
 }
-
+.wavma-help {
+  display: flex;
+  align-items: center;
+  margin-right: 0.25rem;
+  height: 36px;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+.wavma-help:hover {
+  cursor: pointer;
+  background: #f4f4f5;
+}
 .wavma-label {
   display: flex;
   align-items: center;
+  height: 36px;
+  padding: 0 0.5rem;
+  border-radius: 4px;
   font-size: 14px;
   font-weight: normal;
   margin: 0;
@@ -98,6 +112,11 @@
 .wavma-label svg {
   margin-left: 8px;
 }
+.wavma-label:hover {
+  cursor: pointer;
+  background: #f4f4f5;
+}
+
 .wavma .font-list {
   padding: 0 16px;
 }
