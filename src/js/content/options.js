@@ -11,13 +11,13 @@ export default function(div, setFontState) {
       font-family: sans-serif;
       color: #0018ED;
       border-bottom: 1px solid #EDEEF2;
-      padding: 16px 8px;
+      padding: 12px 8px;
     `;
 
     return /*html*/ `
       <div style="${websiteStyle}">
         <div style="${reloadStyle}">
-          <div class="wavma-options__reload-button">Reload fonts <span style="margin-left:auto">
+          <div class="wavma-options__reload-button js-reload">Reload fonts <span class="wavma-options__reload-button-icon js-reload-icon">
             <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.5 7.75C9.5 10.0972 7.59721 12 5.25 12C2.90279 12 1 10.0972 1 7.75C1 5.40279 2.90279 3.5 5.25 3.5" stroke="#0018ED" stroke-width="1.25"/>
             <path d="M5 0.5V6.5L8 3.5L5 0.5Z" fill="#0018ED"/>
@@ -45,6 +45,10 @@ export default function(div, setFontState) {
   );
   $(".js-search").on("click", searchStyles);
   $(".js-fonts").on("click", (e) => setFontFamily(e, setFontState));
+  $(".js-reload").on("click", (e) => {
+    $(".js-reload-icon")[0].classList.add("rotate");
+    setTimeout(() => $(".js-reload-icon")[0].classList.remove("rotate"), 700);
+  });
 
   const searchFonts = () => {
     searchFontFaces();

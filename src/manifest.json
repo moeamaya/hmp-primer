@@ -1,6 +1,6 @@
 {
   "name": "Wavma Browser",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "permissions": ["activeTab", "storage"],
   "options_page": "options.html",
   "background": {
@@ -11,11 +11,7 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://news.ycombinator.com/",
-        "https://lineto.com/*",
-        "<all_urls>"
-      ],
+      "matches": ["<all_urls>"],
       "run_at": "document_end",
       "js": ["content.bundle.js"]
     }

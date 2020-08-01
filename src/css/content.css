@@ -54,6 +54,20 @@
   cursor: pointer;
   background: #f4f4f5;
 }
+.wavma-options__reload-button-icon {
+  margin-left: auto;
+}
+.wavma-options__reload-button-icon.rotate {
+  animation: rotate360 650ms ease-in-out;
+}
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 .wavma #svg svg {
   position: relative;
