@@ -67,14 +67,17 @@ const resetTemplate = (zoom) => {
 
 const animateReset = () => {
   const reloadIcon = $(".js-reload-icon")[0];
+  removeActive();
   reloadIcon.classList.add("rotate");
   setTimeout(() => reloadIcon.classList.remove("rotate"), 700);
 };
 
+const removeActive = (node) => {
+  $(".wavma-font").forEach((item) => item.classList.remove("is-active"));
+};
+
 const setActive = (node) => {
-  Array.from(node.parentNode.children).forEach((n) => {
-    n.classList.remove("is-active");
-  });
+  removeActive();
   node.classList.add("is-active");
 };
 

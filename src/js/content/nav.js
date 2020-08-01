@@ -54,7 +54,7 @@ export default function(div, zoom, getFontState) {
       if (size < 5000000) {
         chrome.storage.local.set({ svg: html }, function(result) {});
       } else {
-        console.error("SVG file size larger than 5mb");
+        showAlert(size);
       }
 
       const svg = document.getElementById("svg");
@@ -111,6 +111,23 @@ export default function(div, zoom, getFontState) {
   $("#wavma-export")[0].on("click", downloadFile);
   $(".js-help")[0].on("click", goToHelp);
 }
+
+const showAlert = (size) => {
+  $(".js-alert")[0].style.display = "block";
+  $(".js-file-size")[0].innerHTML = formatBytes(size);
+};
+
+const formatBytes = (bytes, decimals = 2) => {
+  if (bytes === 0) return "0 Bytes";
+
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i];
+};
 
 const slugify = (string) => {
   return string
