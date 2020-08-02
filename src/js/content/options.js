@@ -59,10 +59,12 @@ export default function(div, setFontState, zoom) {
 }
 
 const resetTemplate = (zoom) => {
+  console.log("getting called?");
   const svg = document.getElementById("svg");
   svg.innerHTML = writing;
   const element = $("#svg svg")[0];
   zoom.element(element);
+  chrome.storage.local.remove("svg");
 };
 
 const animateReset = () => {
