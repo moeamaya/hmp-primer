@@ -1,6 +1,6 @@
 {
   "name": "Wavma Browser",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "permissions": ["activeTab", "storage"],
   "options_page": "options.html",
   "background": {
