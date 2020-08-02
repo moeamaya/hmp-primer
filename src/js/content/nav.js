@@ -33,15 +33,15 @@ export default function(div, zoom, getFontState) {
             <path d="M1 5.5L5 1.5L9 5.5" stroke="#0018ED" stroke-width="1.25"/>
           </svg>
         </label>
-        <input id="wavma-upload" class="js-image-input" type="file" style="display:none">
+        <input id="wavma-upload" class="js-image-input" type="file" accept="image/svg+xml" style="display:none">
       </div>
     </div>
   `
   );
 
   const triggerFile = (e) => {
+    $(".js-alert")[0].style.display = "none";
     const file = e.target.files[0];
-    console.log(file);
     loadFile(file);
   };
 
@@ -51,20 +51,24 @@ export default function(div, zoom, getFontState) {
     reader.onload = (e) => {
       const html = e.target.result;
       const size = e.total;
-      if (size < 5000000) {
-        chrome.storage.local.set({ svg: html }, function(result) {});
+      if (size >= 5000000) {
+        showSizeAlert(size);
       } else {
-        showAlert(size);
+        chrome.storage.local.set({ svg: html }, function(result) {});
       }
 
       const svg = document.getElementById("svg");
 
       svg.innerHTML = html;
       const texts = Array.from(svg.querySelectorAll("text"));
-      texts.forEach((text) => {
-        const size = text.getAttribute("font-size");
-        if (size) text.style.fontSize = size;
-      });
+      if (texts.length === 0) {
+        showTextAlert();
+      } else {
+        texts.forEach((text) => {
+          const size = text.getAttribute("font-size");
+          if (size) text.style.fontSize = size;
+        });
+      }
 
       const element = $("#svg svg")[0];
       zoom.element(element);
@@ -112,10 +116,43 @@ export default function(div, zoom, getFontState) {
   $(".js-help")[0].on("click", goToHelp);
 }
 
-const showAlert = (size) => {
-  $(".js-alert")[0].style.display = "block";
-  $(".js-file-size")[0].innerHTML = formatBytes(size);
+const showSizeAlert = (size) => {
+  const alert = $(".js-alert")[0];
+  alert.style.display = "block";
+
+  const html = /*html*/ `
+      <div class="wavma-alert__content">
+        <h5>Warning</h5>
+        <p style="margin:8px 0 0">SVG file uploaded but not saved</p>
+      </div>
+      <div class="wavma-alert__details">
+        <div class="wavma-alert__detail" style="margin-right:1rem">
+          <h5>Size Limit</h5>
+          <p>5MB</p>
+        </div>
+        <div class="wavma-alert__detail">
+          <h5>Uploaded Size</h5>
+          <p style="color:#FF5B20">${formatBytes(size)}</p>
+        </div>
+      </div>
+  `;
+  alert.querySelector(".js-alert-inner").innerHTML = html;
 };
+
+const showTextAlert = () => {
+  const alert = $(".js-alert")[0];
+  alert.style.display = "block";
+
+  const html = /*html*/ `
+      <div class="wavma-alert__content">
+        <h5>Warning</h5>
+        <p style="margin:8px 0 0">No <span style="color:#FF5B20">text</span> elements found in the SVG file. Please export without outlining text.</p>
+      </div>
+  `;
+  alert.querySelector(".js-alert-inner").innerHTML = html;
+};
+
+const searchText = () => {};
 
 const formatBytes = (bytes, decimals = 2) => {
   if (bytes === 0) return "0 Bytes";
