@@ -20,7 +20,7 @@ export default function(div, zoom) {
 
 const renderAlert = () => {
   return /*html*/ `
-    <div class="wavma-alert js-alert">
+    <div class="wavma-alert js-alert" style="display:none">
       <div class="wavma-alert__content">
         <h5>Warning</h5>
         <p style="margin:8px 0 0">SVG file uploaded but not saved</p>
