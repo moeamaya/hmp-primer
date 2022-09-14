@@ -58,6 +58,7 @@ init();
 
 // Toggle Wavma
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log(request, sender);
   let display = wavma.style.display;
   if (!started) {
     started = true;

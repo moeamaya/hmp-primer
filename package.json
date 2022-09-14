@@ -4,7 +4,8 @@
   "description": "Wavma browser tool to test fonts and colors",
   "scripts": {
     "build": "node utils/build.js",
-    "dev": "node utils/webserver.js"
+    "dev": "node utils/webserver.js",
+    "es": "node esbuild.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "3.0.0",
@@ -21,6 +22,7 @@
     "write-file-webpack-plugin": "4.5.1"
   },
   "dependencies": {
-    "@wavma/enhance": "1.0.5"
+    "@wavma/enhance": "1.0.5",
+    "esbuild": "^0.15.7"
   }
 }
