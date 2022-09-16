@@ -41,7 +41,6 @@
   margin: 0;
   overflow: auto;
   border-right: 1px solid #e1e2ea;
-  /* padding: 24px; */
 }
 .wavma-options__reload-button {
   display: flex;

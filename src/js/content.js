@@ -6,12 +6,13 @@ import options from "./content/options";
 import enhance from "@wavma/enhance";
 // import enhance from "/Users/jamaya/Documents/node/enhance/dist/enhance.js";
 // import enhance from "/Users/jamaya/Documents/node/enhance/src/index.js";
-bling();
+
 
 let started = false;
 let fontState = "";
 
 const init = () => {
+  bling();
   // console.log("wavma");
 };
 

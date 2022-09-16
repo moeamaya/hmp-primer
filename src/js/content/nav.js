@@ -108,7 +108,7 @@ export default function(div, zoom, getFontState) {
   };
 
   const goToHelp = (e) => {
-    window.open("https://wavma.com/alpha", "_blank");
+    window.open("https://www.notion.so/covaya/Wavma-Alpha-fc7d4a6d9e3c42bba0bb3b06f23becd3", "_blank");
   };
 
   $("#wavma-upload")[0].on("change", triggerFile);

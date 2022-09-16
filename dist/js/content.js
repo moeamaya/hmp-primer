@@ -100,7 +100,7 @@
       const svg = parent.querySelector("svg");
     };
     const goToHelp = (e) => {
-      window.open("https://wavma.com/alpha", "_blank");
+      window.open("https://www.notion.so/covaya/Wavma-Alpha-fc7d4a6d9e3c42bba0bb3b06f23becd3", "_blank");
     };
     $("#wavma-upload")[0].on("change", triggerFile);
     $("#wavma-export")[0].on("click", downloadFile);
@@ -1104,10 +1104,10 @@
   }
 
   // src/js/content.js
-  bling_default();
   var started = false;
   var fontState = "";
   var init = () => {
+    bling_default();
   };
   var wavma = document.createElement("div");
   wavma.classList.add("wavma");
