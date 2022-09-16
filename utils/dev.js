@@ -8,9 +8,12 @@ require('esbuild').build({
         "./src/js/background.js",
     ],
     bundle: true,
-    // minify: true,
-    // sourcemap: 'inline',
-    target: ["chrome89", "firefox91", "safari15", "ios15"],
+    watch: {
+        onRebuild(error, result) {
+          if (error) console.error('watch build failed:', error)
+          else console.log('watch build succeeded:', result)
+        },
+      },
     outdir: './dist/',
     loader: { '.png': 'copy', '.json': 'copy', '.eot': 'file', '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.svg': 'file', '.html': 'file' }
 }).catch(() => process.exit(1))

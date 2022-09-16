@@ -39,6 +39,8 @@ export default function(div, zoom, getFontState) {
   `
   );
 
+
+  
   const triggerFile = (e) => {
     $(".js-alert")[0].style.display = "none";
     const file = e.target.files[0];
