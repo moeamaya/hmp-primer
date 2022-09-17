@@ -1,4 +1,4 @@
-// import "crx-hotreload";
+import "crx-hotreload";
 
 chrome.action.onClicked.addListener(function() {
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {

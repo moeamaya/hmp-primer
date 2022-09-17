@@ -39,10 +39,10 @@ export default function(div, zoom, getFontState) {
   `
   );
 
-
   
   const triggerFile = (e) => {
-    $(".js-alert")[0].style.display = "none";
+    const shadow = $('#ShadowWavma')[0].shadowRoot;
+    shadow.querySelector(".js-alert").style.display = "none";
     const file = e.target.files[0];
     loadFile(file);
   };
@@ -59,7 +59,8 @@ export default function(div, zoom, getFontState) {
         chrome.storage.local.set({ svg: html }, function(result) {});
       }
 
-      const svg = document.getElementById("svg");
+      const shadow = $('#ShadowWavma')[0].shadowRoot;
+      const svg = shadow.getElementById("svg");
 
       svg.innerHTML = html;
       const texts = Array.from(svg.querySelectorAll("text"));
@@ -72,50 +73,20 @@ export default function(div, zoom, getFontState) {
         });
       }
 
-      const element = $("#svg svg")[0];
+      const element = shadow.querySelector("#svg svg");
       zoom.element(element);
     };
     reader.readAsText(file);
   };
 
-  const downloadFile = (e) => {
-    const font = getFontState();
-    const parent = document.getElementById("svg");
-    const svg = parent.querySelector("svg");
-    // saveSvgAsPng(svg, `${slugify(font)}.png`, {
-    //   scale: 1.0,
-    // });
-
-    // const svg = parent.innerHTML;
-    // let blob = new Blob([svg], {
-    //   type: "application/octet-stream",
-    // });
-    // let url = URL.createObjectURL(blob);
-    // // location.href = url;
-    // let image = document.createElement("img");
-    // console.log(image);
-
-    // image.src = url;
-    // image.addEventListener(
-    //   "load",
-    //   (result) => {
-    //     console.log(result);
-    //     URL.revokeObjectURL(url);
-    //     // $(".wavma-options")[0].prepend(result.currentTarget);
-    //   },
-    //   {
-    //     once: true,
-    //   }
-    // );
-  };
 
   const goToHelp = (e) => {
     window.open("https://www.notion.so/covaya/Wavma-Alpha-fc7d4a6d9e3c42bba0bb3b06f23becd3", "_blank");
   };
 
-  $("#wavma-upload")[0].on("change", triggerFile);
-  $("#wavma-export")[0].on("click", downloadFile);
-  $(".js-help")[0].on("click", goToHelp);
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  shadow.querySelector("#wavma-upload").on("change", triggerFile);
+  shadow.querySelector(".js-help").on("click", goToHelp);
 }
 
 const showSizeAlert = (size) => {

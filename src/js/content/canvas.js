@@ -9,11 +9,11 @@ export default function(div, zoom) {
     if (result && result.svg) {
       vector = result.svg;
     }
-    const svg = document.getElementById("svg");
-
+    const shadow = $('#ShadowWavma')[0].shadowRoot;
+    const svg = shadow.getElementById("svg");
     svg.innerHTML = vector;
 
-    const element = $("#svg svg")[0];
+    const element = shadow.querySelector("#svg svg");
     zoom.element(element);
   });
 }
@@ -63,7 +63,8 @@ const renderSVG = (div) => {
   `
   );
 
-  const svg = document.getElementById("svg");
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  const svg = shadow.getElementById("svg");
   const texts = Array.from(svg.querySelectorAll("text"));
   texts.forEach((text) => {
     const size = text.getAttribute("font-size");

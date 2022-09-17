@@ -13,6 +13,217 @@
     };
   }
 
+  // src/js/content/style.js
+  var style = `
+<style>
+    .wavma {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    z-index: 999999999;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.1);
+    transform: translateZ(0);
+    color: #4a4c5e;
+    font-size: 14px;
+    margin: 0;
+    }
+    .wavma-nav,
+    .wavma-options {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    .wavma-nav *,
+    .wavma-options * {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+    }
+    .wavma-export {
+    margin-right: 8px;
+    }
+
+    .wavma-main {
+    display: flex;
+    height: calc(100% - 48px);
+    }
+    .wavma-options {
+    height: 100%;
+    width: 280px;
+    flex: 0 0 280px;
+    margin: 0;
+    overflow: auto;
+    border-right: 1px solid #e1e2ea;
+    }
+    .wavma-options__reload-button {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    height: 36px;
+    border-radius: 4px;
+    }
+    .wavma-options__reload-button:hover {
+    cursor: pointer;
+    background: #f4f4f5;
+    }
+    .wavma-options__reload-button-icon {
+    margin-left: auto;
+    }
+    .wavma-options__reload-button-icon.rotate {
+    animation: rotate360 650ms ease-in-out;
+    }
+    @keyframes rotate360 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+
+    .wavma #svg svg {
+    position: relative;
+    transform-origin: 0px 0px;
+    }
+
+    .wavma h5 {
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 10px;
+    color: #8b8a93;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: 500;
+    margin: 24px 0 12px;
+    }
+    .wavma-help {
+    display: flex;
+    align-items: center;
+    margin-right: 0.25rem;
+    height: 36px;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    }
+    .wavma-help:hover {
+    cursor: pointer;
+    background: #f4f4f5;
+    }
+    .wavma-label {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    color: #0018ed;
+    }
+    .wavma-label svg {
+    margin-left: 8px;
+    }
+    .wavma-label:hover {
+    cursor: pointer;
+    background: #f4f4f5;
+    }
+    .wavma-alert {
+    position: absolute;
+    top: 8px;
+    z-index: 1;
+    background: #fff;
+    width: 300px;
+    border: 1px solid #ff5b20;
+    right: 8px;
+    border-radius: 2px;
+    }
+    .wavma-alert h5 {
+    margin: 0;
+    }
+    .wavma-alert p {
+    margin: 8px 0 0;
+    }
+    .wavma-alert__close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    }
+    .wavma-alert__close:hover {
+    cursor: pointer;
+    }
+    .wavma-alert__close path {
+    transition: stroke 350ms ease-out;
+    }
+    .wavma-alert__close:hover path {
+    stroke: #4a4c5e;
+    }
+    .wavma-alert__content {
+    padding: 24px;
+    }
+    .wavma-alert__details {
+    display: flex;
+    padding: 24px;
+    border-top: 1px solid #edeef2;
+    }
+
+    .wavma .font-list {
+    padding: 0 16px;
+    }
+
+    .wavma .fonts,
+    .wavma .colors {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    }
+    .wavma .colors {
+    padding-bottom: 32px;
+    }
+
+    .wavma .wavma-font,
+    .wavma .color {
+    padding: 8px 8px;
+    margin: 0 -8px 1px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: normal;
+    }
+    .wavma-font:hover,
+    .color:hover {
+    cursor: pointer;
+    background: #f4f4f5;
+    }
+    .wavma-font span {
+    color: #8b8a93;
+    }
+    .wavma-font.is-active {
+    cursor: default;
+    background: #f4f4f5;
+    }
+
+    .wavma .color {
+    display: flex;
+    }
+    .wavma .color__swatch {
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    margin: 0;
+    margin-left: auto;
+    }
+</style>
+`;
+
   // src/js/helpers/render.js
   function render_default(relEl, template) {
     if (!relEl)
@@ -62,7 +273,8 @@
   `
     );
     const triggerFile = (e) => {
-      $(".js-alert")[0].style.display = "none";
+      const shadow2 = $("#ShadowWavma")[0].shadowRoot;
+      shadow2.querySelector(".js-alert").style.display = "none";
       const file = e.target.files[0];
       loadFile(file);
     };
@@ -77,7 +289,8 @@
           chrome.storage.local.set({ svg: html }, function(result) {
           });
         }
-        const svg = document.getElementById("svg");
+        const shadow2 = $("#ShadowWavma")[0].shadowRoot;
+        const svg = shadow2.getElementById("svg");
         svg.innerHTML = html;
         const texts = Array.from(svg.querySelectorAll("text"));
         if (texts.length === 0) {
@@ -89,22 +302,17 @@
               text.style.fontSize = size2;
           });
         }
-        const element = $("#svg svg")[0];
+        const element = shadow2.querySelector("#svg svg");
         zoom.element(element);
       };
       reader.readAsText(file);
     };
-    const downloadFile = (e) => {
-      const font = getFontState2();
-      const parent = document.getElementById("svg");
-      const svg = parent.querySelector("svg");
-    };
     const goToHelp = (e) => {
       window.open("https://www.notion.so/covaya/Wavma-Alpha-fc7d4a6d9e3c42bba0bb3b06f23becd3", "_blank");
     };
-    $("#wavma-upload")[0].on("change", triggerFile);
-    $("#wavma-export")[0].on("click", downloadFile);
-    $(".js-help")[0].on("click", goToHelp);
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    shadow.querySelector("#wavma-upload").on("change", triggerFile);
+    shadow.querySelector(".js-help").on("click", goToHelp);
   }
   var showSizeAlert = (size) => {
     const alert = $(".js-alert")[0];
@@ -173,9 +381,10 @@
       if (result && result.svg) {
         vector = result.svg;
       }
-      const svg = document.getElementById("svg");
+      const shadow = $("#ShadowWavma")[0].shadowRoot;
+      const svg = shadow.getElementById("svg");
       svg.innerHTML = vector;
-      const element = $("#svg svg")[0];
+      const element = shadow.querySelector("#svg svg");
       zoom.element(element);
     });
   }
@@ -220,7 +429,8 @@
     </div>
   `
     );
-    const svg = document.getElementById("svg");
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    const svg = shadow.getElementById("svg");
     const texts = Array.from(svg.querySelectorAll("text"));
     texts.forEach((text) => {
       const size = text.getAttribute("font-size");
@@ -274,9 +484,9 @@
     </div>
   `
     );
-    $(".js-search").on("click", searchStyles);
-    $(".js-fonts").on("click", (e) => setFontFamily(e, setFontState2));
-    $(".js-reload").on("click", (e) => {
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    shadow.querySelector(".js-fonts").on("click", (e) => setFontFamily(e, setFontState2));
+    shadow.querySelector(".js-reload").on("click", (e) => {
       resetTemplate(zoom);
       animateReset();
     });
@@ -286,21 +496,23 @@
     return { searchFonts };
   }
   var resetTemplate = (zoom) => {
-    console.log("getting called?");
-    const svg = document.getElementById("svg");
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    const svg = shadow.getElementById("svg");
     svg.innerHTML = writing;
-    const element = $("#svg svg")[0];
+    const element = shadow.querySelector("#svg svg");
     zoom.element(element);
     chrome.storage.local.remove("svg");
   };
   var animateReset = () => {
-    const reloadIcon = $(".js-reload-icon")[0];
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    const reloadIcon = shadow.querySelector(".js-reload-icon");
     removeActive();
     reloadIcon.classList.add("rotate");
     setTimeout(() => reloadIcon.classList.remove("rotate"), 700);
   };
   var removeActive = (node) => {
-    $(".wavma-font").forEach((item) => item.classList.remove("is-active"));
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    shadow.querySelectorAll(".wavma-font").forEach((item) => item.classList.remove("is-active"));
   };
   var setActive = (node) => {
     removeActive();
@@ -320,7 +532,8 @@
       const familyString = node.dataset.family;
       const family = hasNumber(familyString) ? `"${familyString}"` : familyString;
       const weight = node.dataset.weight;
-      const svg = document.getElementById("svg");
+      const shadow = $("#ShadowWavma")[0].shadowRoot;
+      const svg = shadow.getElementById("svg");
       const texts = svg.getElementsByTagName("text");
       Array.from(texts).forEach((text) => {
         text.style.fontFamily = family;
@@ -331,9 +544,6 @@
       setFontState2(family);
     }
   };
-  var searchStyles = () => {
-    searchFontFaces();
-  };
   var capitalize = (s) => {
     if (typeof s !== "string")
       return "";
@@ -343,7 +553,8 @@
     return /\d/.test(myString);
   };
   var renderFonts = (fonts) => {
-    const fontsList = $(".js-fonts")[0];
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    const fontsList = shadow.querySelector(".js-fonts");
     const fontsHTML = fonts.map((font) => {
       return `
       <li class="wavma-font" data-family="${font.family}" data-weight="${font.weight}">
@@ -1108,13 +1319,17 @@
   var fontState = "";
   var init = () => {
     bling_default();
-    console.log("wavma");
   };
   var wavma = document.createElement("div");
   wavma.classList.add("wavma");
   var zm = src_default({ offset: 40 });
   var render = () => {
-    document.body.appendChild(wavma);
+    const shadowHost = document.createElement("div");
+    shadowHost.setAttribute("id", "ShadowWavma");
+    document.body.insertAdjacentElement("beforebegin", shadowHost);
+    const shadowRoot = shadowHost.attachShadow({ mode: "open" });
+    shadowRoot.innerHTML = style;
+    shadowRoot.appendChild(wavma);
     nav_default(wavma, zm, getFontState);
     const main = document.createElement("div");
     main.classList.add("wavma-main");
@@ -1122,7 +1337,8 @@
     const opts = options_default(main, setFontState, zm);
     canvas_default(main, zm);
     opts.searchFonts();
-    const parent = $(".wavma-canvas")[0];
+    const shadow = $("#ShadowWavma")[0].shadowRoot;
+    const parent = shadow.querySelector(".wavma-canvas");
     zm.init(parent);
   };
   var getFontState = () => fontState;

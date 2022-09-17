@@ -44,9 +44,11 @@ export default function(div, setFontState, zoom) {
     </div>
   `
   );
-  $(".js-search").on("click", searchStyles);
-  $(".js-fonts").on("click", (e) => setFontFamily(e, setFontState));
-  $(".js-reload").on("click", (e) => {
+
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  // shadow.querySelector(".js-search").on("click", searchStyles);
+  shadow.querySelector(".js-fonts").on("click", (e) => setFontFamily(e, setFontState));
+  shadow.querySelector(".js-reload").on("click", (e) => {
     resetTemplate(zoom);
     animateReset();
   });
@@ -59,23 +61,25 @@ export default function(div, setFontState, zoom) {
 }
 
 const resetTemplate = (zoom) => {
-  console.log("getting called?");
-  const svg = document.getElementById("svg");
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  const svg = shadow.getElementById("svg");
   svg.innerHTML = writing;
-  const element = $("#svg svg")[0];
+  const element = shadow.querySelector("#svg svg");
   zoom.element(element);
   chrome.storage.local.remove("svg");
 };
 
 const animateReset = () => {
-  const reloadIcon = $(".js-reload-icon")[0];
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  const reloadIcon = shadow.querySelector(".js-reload-icon");
   removeActive();
   reloadIcon.classList.add("rotate");
   setTimeout(() => reloadIcon.classList.remove("rotate"), 700);
 };
 
 const removeActive = (node) => {
-  $(".wavma-font").forEach((item) => item.classList.remove("is-active"));
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  shadow.querySelectorAll(".wavma-font").forEach((item) => item.classList.remove("is-active"));
 };
 
 const setActive = (node) => {
@@ -101,7 +105,8 @@ const setFontFamily = (e, setFontState) => {
     const family = hasNumber(familyString) ? `"${familyString}"` : familyString;
 
     const weight = node.dataset.weight;
-    const svg = document.getElementById("svg");
+    const shadow = $('#ShadowWavma')[0].shadowRoot;
+    const svg = shadow.getElementById("svg");
 
     const texts = svg.getElementsByTagName("text");
     Array.from(texts).forEach((text) => {
@@ -130,7 +135,8 @@ const hasNumber = (myString) => {
 };
 
 const renderFonts = (fonts) => {
-  const fontsList = $(".js-fonts")[0];
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  const fontsList = shadow.querySelector(".js-fonts");
   const fontsHTML = fonts
     .map((font) => {
       return /*html*/ `

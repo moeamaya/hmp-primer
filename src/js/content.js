@@ -1,5 +1,8 @@
-import "../css/content.css";
+// import style from "../css/content";
 import bling from "./helpers/bling";
+
+import { style } from "./content/style";
+
 import nav from "./content/nav";
 import canvas from "./content/canvas";
 import options from "./content/options";
@@ -7,13 +10,11 @@ import enhance from "@wavma/enhance";
 // import enhance from "/Users/jamaya/Documents/node/enhance/dist/enhance.js";
 // import enhance from "/Users/jamaya/Documents/node/enhance/src/index.js";
 
-
 let started = false;
 let fontState = "";
 
 const init = () => {
   bling();
-  console.log("wavma");
 };
 
 const wavma = document.createElement("div");
@@ -21,7 +22,12 @@ wavma.classList.add("wavma");
 const zm = enhance({ offset: 40 });
 
 const render = () => {
-  document.body.appendChild(wavma);
+  const shadowHost = document.createElement("div");
+  shadowHost.setAttribute("id", "ShadowWavma")
+  document.body.insertAdjacentElement("beforebegin", shadowHost);
+  const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+  shadowRoot.innerHTML = style;
+  shadowRoot.appendChild(wavma);
 
   // render plugin
   nav(wavma, zm, getFontState);
@@ -36,7 +42,8 @@ const render = () => {
   opts.searchFonts();
 
   // start zoom
-  const parent = $(".wavma-canvas")[0];
+  const shadow = $('#ShadowWavma')[0].shadowRoot;
+  const parent = shadow.querySelector(".wavma-canvas");
   zm.init(parent);
 };
 
