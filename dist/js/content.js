@@ -1108,6 +1108,7 @@
   var fontState = "";
   var init = () => {
     bling_default();
+    console.log("wavma");
   };
   var wavma = document.createElement("div");
   wavma.classList.add("wavma");
@@ -1140,7 +1141,6 @@
   };
   init();
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(request, sender);
     let display = wavma.style.display;
     if (!started) {
       started = true;

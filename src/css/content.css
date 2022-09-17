@@ -174,7 +174,7 @@
 .wavma .wavma-font,
 .wavma .color {
   padding: 8px 8px;
-  margin: 0 -8px;
+  margin: 0 -8px 1px;
   border-radius: 4px;
   font-size: 14px;
   line-height: normal;
