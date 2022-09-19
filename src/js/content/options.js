@@ -107,6 +107,7 @@ const setFontFamily = (e, setFontState) => {
     const weight = node.dataset.weight;
     const shadow = $('#ShadowWavma')[0].shadowRoot;
     const svg = shadow.getElementById("svg");
+    svg.style.fontFamily = family;
 
     const texts = svg.getElementsByTagName("text");
     Array.from(texts).forEach((text) => {

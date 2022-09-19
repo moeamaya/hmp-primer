@@ -1,5 +1,5 @@
 export const writing = /*html*/ `
-  <svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg class="svg" width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="1000" fill="white"/>
   <text fill="black" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="16" letter-spacing="0em"><tspan x="100" y="703.484">One of the principles of durable typography is always legibility; another is something </tspan><tspan x="100" y="729.084">more than legibility: some earned or unearned interest that gives its living energy to </tspan><tspan x="100" y="754.684">the page. It takes various forms and goes by various names, including serenity, </tspan><tspan x="100" y="780.284">liveliness, laughter, grace and joy</tspan></text>
   <text fill="black" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="20" letter-spacing="0em"><tspan x="100" y="663.105">Durable Typography</tspan></text>

@@ -44,7 +44,7 @@ const render = () => {
   // start zoom
   const shadow = $('#ShadowWavma')[0].shadowRoot;
   const parent = shadow.querySelector(".wavma-canvas");
-  zm.init(parent);
+  zm.enable(parent);
 };
 
 const getFontState = () => fontState;

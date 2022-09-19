@@ -1,11 +1,12 @@
 import render from "../helpers/render";
-import { writing } from "./writing";
+// import { writing } from "./writing";
+import { html } from "./html";
 
 export default function(div, zoom) {
   renderSVG(div);
 
   chrome.storage.local.get(["svg"], function(result) {
-    let vector = writing;
+    let vector = html;
     if (result && result.svg) {
       vector = result.svg;
     }
@@ -13,7 +14,7 @@ export default function(div, zoom) {
     const svg = shadow.getElementById("svg");
     svg.innerHTML = vector;
 
-    const element = shadow.querySelector("#svg svg");
+    const element = shadow.querySelector("#svg .svg");
     zoom.element(element);
   });
 }
@@ -71,32 +72,8 @@ const renderSVG = (div) => {
     if (size) text.style.fontSize = size;
   });
 
-  $(".js-alert-close").on(
+  shadow.querySelector(".js-alert-close").on(
     "click",
-    () => ($(".js-alert")[0].style.display = "none")
+    () => (shadow.querySelector(".js-alert").style.display = "none")
   );
 };
-
-// if (text.classList.contains("replace")) {
-//   const width = text.getBoundingClientRect().width;
-//   // text.style.display = "none";
-
-//   text.insertAdjacentHTML("afterend", textArea(text.textContent.trim()));
-//   const fontSize = text.getAttribute("font-size");
-//   const fill = text.getAttribute("fill");
-
-//   const tspan = text.querySelector("tspan");
-//   const x = tspan.getAttribute("x");
-//   const y = parseFloat(tspan.getAttribute("y")) - fontSize + 1;
-
-//   const fObject = text.nextElementSibling;
-//   fObject.setAttribute("x", x);
-//   fObject.setAttribute("y", y);
-//   fObject.setAttribute("width", width);
-//   const textarea = fObject.querySelector("textarea");
-//   textarea.style.fontSize = fontSize;
-//   textarea.style.color = fill;
-//   textarea.setAttribute("rows", text.querySelectorAll("tspan").length);
-
-//   text.remove();
-// }
