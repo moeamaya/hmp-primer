@@ -1,16 +1,12 @@
 {
-  "name": "wavma-browser",
-  "version": "0.1.4",
-  "description": "Wavma browser tool to test fonts",
+  "name": "hmp",
+  "version": "0.0.1",
+  "description": "Code for HMP",
   "scripts": {
     "build": "node utils/build.js",
     "dev": "node utils/dev.js"
   },
   "devDependencies": {
-    "crx-hotreload": "^1.0.6",
     "esbuild": "^0.15.7"
-  },
-  "dependencies": {
-    "@wavma/enhance": "1.1.2"
   }
 }

@@ -1,13 +1,11 @@
 require('esbuild').build({
     entryPoints: [
-        "./src/manifest.json",
-        "./src/img/icon-34.png",
-        "./src/img/icon-128.png",
-        "./src/css/content.css",
-        "./src/js/content.js",
-        "./src/js/background.js",
+      "./src/img/alocasia.png",
+      "./src/css/content.css",
+      "./src/js/content.js",
     ],
     bundle: true,
+    target: ["chrome89", "firefox91", "safari15", "ios15"],
     watch: {
         onRebuild(error, result) {
           if (error) console.error('watch build failed:', error)

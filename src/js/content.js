@@ -1,79 +1,56 @@
-// import style from "../css/content";
 import bling from "./helpers/bling";
 
-import { style } from "./content/style";
+bling();
+let plants = [];
 
-import nav from "./content/nav";
-import canvas from "./content/canvas";
-import options from "./content/options";
-import enhance from "@wavma/enhance";
-// import enhance from "/Users/jamaya/Documents/node/enhance/dist/enhance.js";
-// import enhance from "/Users/jamaya/Documents/node/enhance/src/index.js";
-
-let started = false;
-let fontState = "";
 
 const init = () => {
-  bling();
+  const height = document.body.scrollHeight;
+  const sticky = $('.sticky')[0];
+  const stickyRect = sticky.getBoundingClientRect()
+  const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
+  const delta = height - baseline;
+  console.log(delta);
+
+  setPlants(baseline, delta);
+
+  addEventListeners();
 };
 
-const wavma = document.createElement("div");
-wavma.classList.add("wavma");
-const zm = enhance({ offset: 40 });
+const setPlants = (baseline, delta) => {
+  const plantNodes = $('.plant');
+  plantNodes.forEach((node, index) => {
+    const gate = delta / (plantNodes.length + 3);
+    const obj = {
+      target: baseline + (gate * index),
+      node: node
+    }
+    plants.push(obj);
+  });
+}
 
-const render = () => {
-  const shadowHost = document.createElement("div");
-  shadowHost.setAttribute("id", "ShadowWavma")
-  document.body.insertAdjacentElement("beforebegin", shadowHost);
-  const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
-  shadowRoot.innerHTML = style;
-  shadowRoot.appendChild(wavma);
+const updateScroll = () => {
+  target = window.scrollY || window.pageYOffset;
 
-  // render plugin
-  nav(wavma, zm, getFontState);
+  const remove = [];
+  plants.forEach((plant) => {
+    if (target > plant.target) {
+      plant.node.classList.add('animated');
+      remove.push(plant);
+    }
+  });
+  const newPlants = plants.filter((value) => {
+    return !remove.includes(value)
+  });
+  
 
-  const main = document.createElement("div");
-  main.classList.add("wavma-main");
-  wavma.appendChild(main);
-
-  const opts = options(main, setFontState, zm);
-  canvas(main, zm);
-
-  opts.searchFonts();
-
-  // start zoom
-  const shadow = $('#ShadowWavma')[0].shadowRoot;
-  const parent = shadow.querySelector(".wavma-canvas");
-  zm.enable(parent);
-};
-
-const getFontState = () => fontState;
-
-const setFontState = (font) => {
-  fontState = font;
-};
+  plants = newPlants;
+}
 
 const addEventListeners = () => {
-  document.body.addEventListener("click", (e) => {
-    const withinWavma = e.path.some((p) => {
-      if (p.classList) return p.classList.contains("wavma");
-    });
-    if (!withinWavma) wavma.style.display = "none";
-  });
+  window.addEventListener('scroll', updateScroll)
 };
+
 
 init();
 
-// Toggle Wavma
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  let display = wavma.style.display;
-  if (!started) {
-    started = true;
-    render();
-    addEventListeners();
-  } else if (display !== "none") {
-    wavma.style.display = "none";
-  } else {
-    wavma.style.display = "block";
-  }
-});
