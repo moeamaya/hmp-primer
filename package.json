@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "esbuild": "^0.15.7"
+  },
+  "dependencies": {
+    "interactjs": "^1.10.17"
   }
 }

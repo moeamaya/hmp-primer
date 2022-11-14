@@ -46,6 +46,7 @@ body {
 }
 .sticky {
   position: sticky;
+  width: 100%;
   font-family: Hellenic;
   font-style: italic;
   text-align: center;
@@ -62,27 +63,37 @@ body {
   padding: 4rem 0 82rem;
   text-align: center;
 }
+.plants {
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  bottom: 100%;
+  background: transparent;
+}
 .plant {
   position: absolute;
-  bottom: 100%;
-  background: red;
+  top: 0;
+  background: transparent;
   width: 200px;
   height: 200px;
   opacity: 0.0;
-  transform: translateY(-100px) scale(0.95);
-  transform: center center;
+  transform: translateY(-200px) scaleY(0.95);
+  transform-origin: center center;
   transition: opacity 350ms ease-out, transform 600ms cubic-bezier(.47, 1.64, .41, .8);
-}
-.plant:nth-child(3) {
-  left: 25%;
-}
-.plant:nth-child(4) {
-  left: 50%;
-}
-.plant:nth-child(5) {
-  left: 75%;
+  pointer-events: none;
 }
 .plant.animated {
   transform: translateY(0px) scale(1);
   opacity: 1;
+}
+.inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+.plant-image {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
 }
