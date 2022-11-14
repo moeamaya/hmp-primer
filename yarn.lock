@@ -2,30 +2,15 @@
 # yarn lockfile v1
 
 
-"1.0.1@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/1.0.1/-/1.0.1-1.0.0.tgz#efcf4a29389892a61fa912d26e6bbee158ae8469"
-  integrity sha512-A9qZCV2W6N24Z6uxmXCLpsEYkAjm7Ot4Z0AT6e9jPQOFKtbCInUxLdW4hivwEAXtQOqwj+ncfHyuKuA6VQnkMA==
-
 "@esbuild/linux-loong64@0.15.7":
   version "0.15.7"
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.15.7.tgz#1ec4af4a16c554cbd402cc557ccdd874e3f7be53"
   integrity sha512-IKznSJOsVUuyt7cDzzSZyqBEcZe+7WlBqTVXiF1OXP/4Nm387ToaXZ0fyLwI1iBlI/bzpxVq411QE2/Bt2XWWw==
 
-"@wavma/enhance@1.1.2", "@wavma/enhance@^1.0.1":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@wavma/enhance/-/enhance-1.1.2.tgz#b4ca45a779ff1ee40616e7adfe1aed2022dd7a56"
-  integrity sha512-ArQXMMCbIUTDtEbPrDnWvmIKlz5g7v0z+zDgABOz+qhHHKDUZ082qRCOuHfypE8VICLVtdWPCguOLacqII+0Aw==
-  dependencies:
-    "1.0.1" "^1.0.0"
-    "@wavma/enhance" "^1.0.1"
-    esm "^3.2.25"
-    hotkeys-js "^3.8.1"
-
-crx-hotreload@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/crx-hotreload/-/crx-hotreload-1.0.6.tgz#6caebf8307bc4efec0b661d7cf4f03a27fdfebc2"
-  integrity sha512-W07F3gXyCTrHf4w1W2v6y3PHBYyYtJKCiBmgf0FkkteFh9GhqeV9HR7+UbKKfnrx39oC+PHycz9NmBMerIcbGA==
+"@interactjs/types@1.10.17":
+  version "1.10.17"
+  resolved "https://registry.yarnpkg.com/@interactjs/types/-/types-1.10.17.tgz#1649de06d9ead790c81ecece76736b852bdfc77e"
+  integrity sha512-X2JpoM7xUw0p9Me0tMaI0HNfcF/Hd07ZZlzpnpEMpGerUZOLoyeThrV9P+CrBHxZrluWJrigJbcdqXliFd0YMA==
 
 esbuild-android-64@0.15.7:
   version "0.15.7"
@@ -154,12 +139,9 @@ esbuild@^0.15.7:
     esbuild-windows-64 "0.15.7"
     esbuild-windows-arm64 "0.15.7"
 
-esm@^3.2.25:
-  version "3.2.25"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
-  integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
-
-hotkeys-js@^3.8.1:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/hotkeys-js/-/hotkeys-js-3.10.0.tgz#2bbd13de4aa002fa916c34e3859239924311e35a"
-  integrity sha512-20xeVdOqcgTkMox0+BqFwADZP7+5dy/9CFPpAinSMh2d0s3b0Hs2V2D+lMh4Hphkf7VE9pwnOl58eP1te+REcg==
+interactjs@^1.10.17:
+  version "1.10.17"
+  resolved "https://registry.yarnpkg.com/interactjs/-/interactjs-1.10.17.tgz#aed66a63020cd092236133f9149e6448dc405d72"
+  integrity sha512-grjHJgnWkCoQLmAlk2yalNd1r0ztUhXLJNVjSOfWn1wfNNgU2tx1cDEkro9WYerDNC9UG3MZTeD4O6zOM5gbIA==
+  dependencies:
+    "@interactjs/types" "1.10.17"
