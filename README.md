@@ -1,3 +1,3 @@
-# Chrome Extension ESBuild
+# ESBuild Moe Boilerplate
 
-Wavma
+How Many Plants Primer javascript
