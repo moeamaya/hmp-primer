@@ -1,6 +1,5 @@
 require('esbuild').build({
     entryPoints: [
-      "./src/img/alocasia.png",
       "./src/css/content.css",
       "./src/js/content.js",
     ],
@@ -12,6 +11,6 @@ require('esbuild').build({
           else console.log('watch build succeeded:', result)
         },
       },
-    outdir: './dist/',
+    outdir: './dev/',
     loader: { '.png': 'copy', '.json': 'copy', '.eot': 'file', '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.svg': 'file', '.html': 'file' }
 }).catch(() => process.exit(1))

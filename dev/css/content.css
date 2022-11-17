@@ -1,3 +1,4 @@
+/* src/css/content.css */
 @font-face {
   font-family: Chromatica;
   font-weight: 500;
@@ -19,9 +20,6 @@
   font-size: italic;
   src: url(https://uploads-ssl.webflow.com/5f4e8114a9640d4aa2c637c4/5f4ffc8897279e9dcc750d9b_HellenicTypewriter-MediumItalic.woff);
 }
-
-
-
 body {
   background-color: #f9f5f1;
   font-family: Chromatica;
@@ -46,7 +44,6 @@ body {
   padding: 8rem 0;
   text-align: center;
 }
-
 .sticky {
   position: sticky;
   width: 100%;
@@ -58,7 +55,6 @@ body {
   background-color: #f9f5f1;
   z-index: 2;
   top: calc(100% - 100px);
-  /* transform: translateY(-100%) */
 }
 .sticky h2 {
   font-weight: 500;
@@ -67,27 +63,23 @@ body {
   padding: 4rem 0 82rem;
   text-align: center;
 }
-
 .plants {
   position: absolute;
   height: 200px;
   width: 100%;
   bottom: 100%;
-  /* background: orangered; */
   background: transparent;
 }
 .plant {
   position: absolute;
   top: 0;
-  /* background: yellowgreen; */
   background: transparent;
   width: 200px;
   height: 200px;
   opacity: 0.0;
   transform: translateY(-200px) scaleY(0.95);
   transform-origin: center center;
-  transition: opacity 350ms ease-out,
-    transform 600ms cubic-bezier(.47,1.64,.41,.8);
+  transition: opacity 350ms ease-out, transform 600ms cubic-bezier(.47, 1.64, .41, .8);
   pointer-events: none;
 }
 .plant.animated {
@@ -98,7 +90,6 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* background: rosybrown; */
   pointer-events: auto;
 }
 .plant-image {

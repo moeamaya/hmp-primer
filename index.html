@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="./dev/css/content.css">
 </head>
 
 <body>
@@ -30,18 +30,8 @@
 <section class="sticky">
   <h2>Let's Do This / $29</h2>
   <div class="plants">
-    <div class="plant">
-      <div class="inner"></div>
-    </div>
-    <div class="plant">
-      <div class="inner"></div>
-    </div>
-    <div class="plant">
-      <div class="inner"></div>
-    </div>
-    <div class="plant">
-      <div class="inner"></div>
-    </div>
+
+    <!-- Create dynamically -->
   </div>
 </section>
 
@@ -50,10 +40,26 @@
 </section>
 
 <div style="display: none">
-  <img class="plant-image" src="./img/alocasia.png">
+  <img id="alocasia" class="plant-image" src="./img/alocasia.png">
+  <img id="cactus" class="plant-image" src="./img/cactus.png">
+  <img id="fiddle" class="plant-image" src="./img/fiddle.png">
 </div>
 
-<script src="./js/content.js"></script>
+<script src="./dev/js/content.js"></script>
+<script>
+  const images = [
+    {image: "alocasia", bottom: "-46px"},
+    {image: "cactus", bottom: "-22px"},
+    {image: "fiddle", bottom: "-60px"},
+    {image: "cactus", bottom: "-22px"},
+    {image: "alocasia", bottom: "-46px"},
+    {image: "cactus", bottom: "-22px"},
+    {image: "alocasia", bottom: "-46px"},
+    {image: "fiddle", bottom: "-60px"},
+    {image: "alocasia", bottom: "-46px"},
+  ]
+  hmpShelf(images);
+</script>
 
 
 </body>
