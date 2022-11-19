@@ -3369,7 +3369,7 @@
       const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
       const delta = height - baseline;
       const restriction = $(".plants")[0];
-      setPlants(restriction, baseline, delta);
+      setPlantPositions(restriction, baseline, delta);
       setInteractables(width);
       setDrag(restriction);
       addEventListeners();
@@ -3383,9 +3383,9 @@
       restriction.appendChild(node);
       return node;
     };
-    const setPlants = (restriction, baseline, delta) => {
+    const setPlantPositions = (restriction, baseline, delta) => {
       images.forEach((node, index) => {
-        const gate = delta / (images.length + 3);
+        const gate = delta / (images.length + images.length / 2);
         const obj = {
           target: baseline + gate * index,
           node: createPlantNode(restriction)
