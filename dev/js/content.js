@@ -3383,11 +3383,19 @@
       restriction.appendChild(node);
       return node;
     };
+    const generateGates = () => {
+      const base = [];
+      images.forEach((image, index) => {
+        base.push(index);
+      });
+      return base.sort(() => Math.random() > 0.5 ? 1 : -1);
+    };
     const setPlantPositions = (restriction, baseline, delta) => {
+      const gates = generateGates();
       images.forEach((node, index) => {
         const gate = delta / (images.length + images.length / 2);
         const obj = {
-          target: baseline + gate * index,
+          target: baseline + gate * gates[index],
           node: createPlantNode(restriction)
         };
         plants.push({ ...node, ...obj });
@@ -3397,7 +3405,6 @@
       const innerNodes = $(".inner");
       const gap = (width - innerNodes.length * 200) / (innerNodes.length - 1);
       plants.forEach((plant, index) => {
-        console.log(plant);
         const inner = plant.node.querySelector(".inner");
         const image = $(`#${plant.image}`)[0];
         const plantImageNode = image.cloneNode(true);
