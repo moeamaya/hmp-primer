@@ -70,11 +70,14 @@ body {
 
 .plants {
   position: absolute;
+  left: 50%;
   height: 200px;
   width: 100%;
+  max-width: 1440px;
   bottom: 100%;
   /* background: orangered; */
   background: transparent;
+  transform: translateX(-50%);
 }
 .plant {
   position: absolute;

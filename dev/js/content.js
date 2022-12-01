@@ -3363,12 +3363,12 @@
     let plants = [];
     const init = () => {
       const height = document.body.scrollHeight;
-      const width = window.innerWidth;
       const sticky = $(".sticky")[0];
       const stickyRect = sticky.getBoundingClientRect();
       const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
       const delta = height - baseline;
       const restriction = $(".plants")[0];
+      const width = restriction.getBoundingClientRect().width;
       setPlantPositions(restriction, baseline, delta);
       setInteractables(width);
       setDrag(restriction);
@@ -3393,7 +3393,7 @@
     const setPlantPositions = (restriction, baseline, delta) => {
       const gates = generateGates();
       images.forEach((node, index) => {
-        const gate = delta / (images.length + images.length / 2);
+        const gate = delta / (images.length + images.length / 1.5);
         const obj = {
           target: baseline + gate * gates[index],
           node: createPlantNode(restriction)
