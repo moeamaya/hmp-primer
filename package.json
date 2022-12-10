@@ -1,5 +1,5 @@
 {
-  "name": "hmp",
+  "name": "hmp-primer",
   "version": "0.0.1",
   "description": "Code for HMP",
   "scripts": {
@@ -11,5 +11,16 @@
   },
   "dependencies": {
     "interactjs": "^1.10.17"
-  }
+  },
+  "main": "content.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moeamaya/hmp-primer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moeamaya/hmp-primer/issues"
+  },
+  "homepage": "https://github.com/moeamaya/hmp-primer#readme"
 }
