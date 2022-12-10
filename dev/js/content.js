@@ -3374,7 +3374,7 @@
       });
     };
     const setDrag = (restriction2, className2) => {
-      const plant = (0, import_interactjs.default)(className2);
+      const plant = (0, import_interactjs.default)(className2).styleCursor(false);
       plant.draggable({
         inertia: true,
         modifiers: [

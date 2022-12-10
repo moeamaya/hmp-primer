@@ -41,7 +41,7 @@ const hmpShelf = (images, sticky, restriction, className) => {
   };
 
   const setDrag = (restriction, className) => {
-    const plant = interact(className);
+    const plant = interact(className).styleCursor(false);
 
     plant.draggable({
       inertia: true,
