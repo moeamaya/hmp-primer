@@ -425,7 +425,7 @@
           return e2 in t2 ? Object.defineProperty(t2, e2, { value: n2, enumerable: true, configurable: true, writable: true }) : t2[e2] = n2, t2;
         }
         Object.defineProperty(N, "__esModule", { value: true }), N.BaseEvent = void 0;
-        var $2 = function() {
+        var $ = function() {
           function t2(e3) {
             !function(t3, e4) {
               if (!(t3 instanceof e4))
@@ -440,7 +440,7 @@
             this.immediatePropagationStopped = this.propagationStopped = true;
           } }]) && q(e2.prototype, n2), Object.defineProperty(e2, "prototype", { writable: false }), t2;
         }();
-        N.BaseEvent = $2, Object.defineProperty($2.prototype, "interaction", { get: function() {
+        N.BaseEvent = $, Object.defineProperty($.prototype, "interaction", { get: function() {
           return this._interaction._proxy;
         }, set: function() {
         } });
@@ -3341,47 +3341,19 @@
     }
   });
 
-  // src/js/helpers/bling.js
-  function bling_default() {
-    window.$ = document.querySelectorAll.bind(document);
-    Node.prototype.on = window.on = function(name, fn) {
-      this.addEventListener(name, fn);
-    };
-    NodeList.prototype.__proto__ = Array.prototype;
-    NodeList.prototype.on = NodeList.prototype.addEventListener = function(name, fn) {
-      this.forEach(function(elem, i) {
-        elem.on(name, fn);
-      });
-    };
-  }
-
   // src/js/content.js
   var import_interactjs = __toESM(require_interact_min());
-  var hmpShelf = (images) => {
+  var hmpShelf = (images, sticky, restriction, className) => {
     console.log("lets ride");
-    bling_default();
     let plants = [];
     const init = () => {
       const height = document.body.scrollHeight;
-      const sticky = $(".sticky")[0];
       const stickyRect = sticky.getBoundingClientRect();
       const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
       const delta = height - baseline;
-      const restriction = $(".plants")[0];
-      const width = restriction.getBoundingClientRect().width;
-      setPlantPositions(restriction, baseline, delta);
-      setInteractables(width);
-      setDrag(restriction);
+      setPlantPositions(baseline, delta);
+      setDrag(restriction, className);
       addEventListeners();
-    };
-    const createPlantNode = (restriction) => {
-      const node = document.createElement("div");
-      node.classList.add("plant");
-      const inner = document.createElement("div");
-      inner.classList.add("inner");
-      node.appendChild(inner);
-      restriction.appendChild(node);
-      return node;
     };
     const generateGates = () => {
       const base = [];
@@ -3390,35 +3362,24 @@
       });
       return base.sort(() => Math.random() > 0.5 ? 1 : -1);
     };
-    const setPlantPositions = (restriction, baseline, delta) => {
+    const setPlantPositions = (baseline, delta) => {
       const gates = generateGates();
       images.forEach((node, index) => {
         const gate = delta / (images.length + images.length / 1.5);
         const obj = {
           target: baseline + gate * gates[index],
-          node: createPlantNode(restriction)
+          node: document.querySelector(`#${node.image}`)
         };
         plants.push({ ...node, ...obj });
       });
     };
-    const setInteractables = (width) => {
-      plants.forEach((plant, index) => {
-        const inner = plant.node.querySelector(".inner");
-        const image = $(`#${plant.image}`)[0];
-        const plantImageNode = image.cloneNode(true);
-        inner.appendChild(plantImageNode);
-        plantImageNode.style.bottom = plant.bottom;
-        plant.node.style.left = plant.left;
-        plant.node.style.right = plant.right;
-      });
-    };
-    const setDrag = (restriction) => {
-      const plant = (0, import_interactjs.default)(".inner");
+    const setDrag = (restriction2, className2) => {
+      const plant = (0, import_interactjs.default)(className2);
       plant.draggable({
         inertia: true,
         modifiers: [
           import_interactjs.default.modifiers.restrictRect({
-            restriction,
+            restriction: restriction2,
             endOnly: true
           })
         ],

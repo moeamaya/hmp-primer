@@ -1,40 +1,23 @@
-import bling from "./helpers/bling";
 import interact from 'interactjs'
 
 
-const hmpShelf = (images) => {
+const hmpShelf = (images, sticky, restriction, className) => {
   console.log('lets ride');
-  bling();
   let plants = [];
 
   const init = () => {
     const height = document.body.scrollHeight;
-    // const width = window.innerWidth;
 
-    const sticky = $('.sticky')[0];
     const stickyRect = sticky.getBoundingClientRect()
     const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
     const delta = height - baseline;
-    const restriction = $('.plants')[0];
-    const width = restriction.getBoundingClientRect().width;
 
-    setPlantPositions(restriction, baseline, delta);
-    setInteractables(width);
-    setDrag(restriction);
+    setPlantPositions(baseline, delta);
+    setDrag(restriction, className);
 
     addEventListeners();
   };
 
-  const createPlantNode = (restriction) => {
-    const node = document.createElement('div');
-    node.classList.add('plant');
-    const inner = document.createElement('div');
-    inner.classList.add('inner');
-    node.appendChild(inner);
-    restriction.appendChild(node);
-
-    return node;
-  };
 
   const generateGates = () => {
     const base = [];
@@ -44,35 +27,21 @@ const hmpShelf = (images) => {
     return base.sort(() => (Math.random() > 0.5) ? 1 : -1);
   }
 
-  const setPlantPositions = (restriction, baseline, delta) => {
+  const setPlantPositions = (baseline, delta) => {
     const gates = generateGates();
 
     images.forEach((node, index) => {
       const gate = delta / (images.length + (images.length / 1.5));
       const obj = {
         target: baseline + (gate * gates[index]),
-        node: createPlantNode(restriction)
+        node: document.querySelector(`#${node.image}`)
       }
       plants.push({...node, ...obj});
     });
   };
 
-  const setInteractables = (width) => {
-    plants.forEach((plant, index) => {
-      const inner = plant.node.querySelector('.inner');
-      const image = $(`#${plant.image}`)[0];
-      
-      const plantImageNode = image.cloneNode(true);
-      inner.appendChild(plantImageNode);
-      plantImageNode.style.bottom = plant.bottom;
-
-      plant.node.style.left = plant.left;
-      plant.node.style.right = plant.right;
-    });
-  }
-
-  const setDrag = (restriction) => {
-    const plant = interact('.inner');
+  const setDrag = (restriction, className) => {
+    const plant = interact(className);
 
     plant.draggable({
       inertia: true,

@@ -27,29 +27,47 @@
   Buy
 </section>
 
-<section class="sticky">
-  <h2>Let's Do This / $29</h2>
-  <div class="plants">
+<section>
+  <div class="sticky">
+    <h2>Let's Do This / $29</h2>
+    <div class="plants">
 
-    <!-- Create dynamically -->
+      <div class="plant-sticky-plant" style="left:-4%">
+        <img id="moneytree" style="width:187px;bottom:-13px" class="plant-image" src="./img/moneytree.png">
+      </div>
+      <div class="plant-sticky-plant" style="left:6%">
+        <img id="snakeplant" style="width:203px;bottom:-45px" class="plant-image" src="./img/snakeplant.png">
+      </div>
+      <div class="plant-sticky-plant" style="left:2%">
+        <img id="spiderplant" style="width:169px;bottom:-76px" class="plant-image" src="./img/spiderplant.png">
+      </div>
+
+      <div class="plant-sticky-plant" style="left:15%">
+        <img id="dieffenbachia" style="width:217px;bottom:-49px" class="plant-image" src="./img/dieffenbachia.png">
+      </div>
+      <div class="plant-sticky-plant" style="left:28%">
+        <img id="stringofhearts" style="width:150px;bottom:-99px" class="plant-image" src="./img/stringofhearts.png">
+      </div>
+      <div class="plant-sticky-plant" style="left:23%">
+        <img id="pilea" style="width:113px;bottom:-13px" class="plant-image" src="./img/pilea.png">
+      </div>
+    </div>
   </div>
-</section>
+  <div class="content">
+    <h2>Gain the confidence to</h2>
+  </section>
 
-<section class="content">
-  <h2>Gain the confidence to</h2>
-</section>
 
 <footer>
   <h2>Title</h2>
 </footer>
 
 <div style="display: none">
-  <img id="moneytree" style="width:187px" class="plant-image" src="./img/moneytree.png">
-  <img id="spiderplant" style="width:169px" class="plant-image" src="./img/spiderplant.png">
-  <img id="snakeplant" style="width:203px" class="plant-image" src="./img/snakeplant.png">
-  <img id="dieffenbachia" style="width:217px" class="plant-image" src="./img/dieffenbachia.png">
-  <img id="pilea" style="width:113px" class="plant-image" src="./img/pilea.png">
-  <img id="stringofhearts" style="width:150px" class="plant-image" src="./img/stringofhearts.png">
+  
+  
+  
+  
+  
   <img id="calatheamedallion" style="width:140px" class="plant-image" src="./img/calatheamedallion.png">
   <img id="calatheaorbifolia" style="width:226px" class="plant-image" src="./img/calatheaorbifolia.png">
   <img id="calathearattlesnake" style="width:154px" class="plant-image" src="./img/calathearattlesnake.png">
@@ -72,19 +90,21 @@
     {image: "stringofhearts", bottom: "-99px", left: "28%"},
     {image: "pilea", bottom: "-13px", left: "23%"},
 
-    {image: "calatheaorbifolia", bottom: "-34px", right: "42%"},
-    {image: "calatheamedallion", bottom: "-26px", right: "44%"},
-    {image: "calathearattlesnake", bottom: "-22px", right: "32%"},
+    // {image: "calatheaorbifolia", bottom: "-34px", right: "42%"},
+    // {image: "calatheamedallion", bottom: "-26px", right: "44%"},
+    // {image: "calathearattlesnake", bottom: "-22px", right: "32%"},
 
-    {image: "alocasiapolly", bottom: "-29px", right: "24%"},
-    {image: "anthurium", bottom: "-23px", right: "18%"},
-    {image: "goldenpothos", bottom: "-78px", right: "20%"},
+    // {image: "alocasiapolly", bottom: "-29px", right: "24%"},
+    // {image: "anthurium", bottom: "-23px", right: "18%"},
+    // {image: "goldenpothos", bottom: "-78px", right: "20%"},
 
-    {image: "ponytailpalm", bottom: "-26px", right: "8%"},
-    {image: "spottedbegonia", bottom: "-26px", right: "-5%"},
-    {image: "prayerplant", bottom: "-18px", right: "0%"},
+    // {image: "ponytailpalm", bottom: "-26px", right: "8%"},
+    // {image: "spottedbegonia", bottom: "-26px", right: "-5%"},
+    // {image: "prayerplant", bottom: "-18px", right: "0%"},
   ]
-  hmpShelf(images);
+  const sticky = document.querySelector('.sticky');
+  const restriction = document.querySelector('.plants');
+  hmpShelf(images, sticky, restriction, '.plant-sticky-plant');
 
 
 </script>
