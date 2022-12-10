@@ -58,21 +58,16 @@ const hmpShelf = (images) => {
   };
 
   const setInteractables = (width) => {
-    const innerNodes = $('.inner');
-    const gap = (width - (innerNodes.length * 200)) / (innerNodes.length - 1);
-
     plants.forEach((plant, index) => {
       const inner = plant.node.querySelector('.inner');
       const image = $(`#${plant.image}`)[0];
       
-
       const plantImageNode = image.cloneNode(true);
       inner.appendChild(plantImageNode);
       plantImageNode.style.bottom = plant.bottom;
 
-      const space = (200 * index) + (gap * index);
-      inner.style.transform = 'translate(' + space + 'px, 0px)'
-      inner.setAttribute('data-x', space);
+      plant.node.style.left = plant.left;
+      plant.node.style.right = plant.right;
     });
   }
 

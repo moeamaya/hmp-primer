@@ -63,6 +63,10 @@ body {
   padding: 4rem 0 82rem;
   text-align: center;
 }
+footer {
+  background-color: #025050;
+  height: 600px;
+}
 .plants {
   position: absolute;
   left: 50%;
