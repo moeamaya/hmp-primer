@@ -13,11 +13,11 @@ const hmpShelf = (images, sticky, restriction, className) => {
     const delta = height - baseline;
 
     setPlantPositions(baseline, delta);
+    setParentWidth();
     setDrag(restriction, className);
 
     addEventListeners();
   };
-
 
   const generateGates = () => {
     const base = [];
@@ -37,6 +37,15 @@ const hmpShelf = (images, sticky, restriction, className) => {
         node: document.querySelector(`#${node.image}`)
       }
       plants.push({...node, ...obj});
+    });
+  };
+
+  const setParentWidth = () => {
+    plants.forEach((plant) => {
+      const parent = plant.node.parentNode;
+      const width = plant.node.offsetWidth;
+
+      parent.style.width = width + 'px';
     });
   };
 

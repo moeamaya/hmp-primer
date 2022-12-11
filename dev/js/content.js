@@ -3352,6 +3352,7 @@
       const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
       const delta = height - baseline;
       setPlantPositions(baseline, delta);
+      setParentWidth();
       setDrag(restriction, className);
       addEventListeners();
     };
@@ -3371,6 +3372,13 @@
           node: document.querySelector(`#${node.image}`)
         };
         plants.push({ ...node, ...obj });
+      });
+    };
+    const setParentWidth = () => {
+      plants.forEach((plant) => {
+        const parent = plant.node.parentNode;
+        const width = plant.node.offsetWidth;
+        parent.style.width = width + "px";
       });
     };
     const setDrag = (restriction2, className2) => {
