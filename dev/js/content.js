@@ -3351,6 +3351,7 @@
       const stickyRect = sticky.getBoundingClientRect();
       const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
       const delta = height - baseline;
+      console.log(height, baseline, delta);
       setPlantPositions(baseline, delta);
       setParentWidth();
       setDrag(restriction, className);
@@ -3365,14 +3366,15 @@
     };
     const setPlantPositions = (baseline, delta) => {
       const gates = generateGates();
+      const gate = delta / (images.length + images.length / 1.5);
       images.forEach((node, index) => {
-        const gate = delta / (images.length + images.length / 1.5);
         const obj = {
-          target: baseline + gate * gates[index],
+          target: baseline + gate * index,
           node: document.querySelector(`#${node.image}`)
         };
         plants.push({ ...node, ...obj });
       });
+      console.log(plants);
     };
     const setParentWidth = () => {
       plants.forEach((plant) => {
@@ -3410,6 +3412,7 @@
       plants.forEach((plant) => {
         if (target > plant.target) {
           plant.node.classList.add("animated");
+          console.log(plant);
           remove.push(plant);
         }
       });

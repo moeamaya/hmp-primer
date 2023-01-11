@@ -76,6 +76,9 @@ footer {
   bottom: 100%;
   background: transparent;
   transform: translateX(-50%);
+  cursor: url(../glove-LFFJJRKH.png), auto;
+  cursor: -webkit-image-set(url(../glove-LFFJJRKH.png) 1x, url(../glove@2x-7MNRP5MI.png) 2x) 0 0, pointer;
+  user-select: none;
 }
 .plant-image {
   position: absolute;
@@ -96,4 +99,6 @@ footer {
 }
 .plant-sticky-plant img {
   position: absolute;
+}
+@media screen and (max-width: 991px) {
 }

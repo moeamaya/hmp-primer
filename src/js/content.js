@@ -12,6 +12,8 @@ const hmpShelf = (images, sticky, restriction, className) => {
     const baseline = stickyRect.top - window.innerHeight + stickyRect.height;
     const delta = height - baseline;
 
+    console.log(height, baseline, delta)
+
     setPlantPositions(baseline, delta);
     setParentWidth();
     setDrag(restriction, className);
@@ -29,15 +31,16 @@ const hmpShelf = (images, sticky, restriction, className) => {
 
   const setPlantPositions = (baseline, delta) => {
     const gates = generateGates();
+    const gate = delta / (images.length + (images.length / 1.5));
 
     images.forEach((node, index) => {
-      const gate = delta / (images.length + (images.length / 1.5));
       const obj = {
-        target: baseline + (gate * gates[index]),
+        target: baseline + (gate * index),//gates[index]),
         node: document.querySelector(`#${node.image}`)
       }
       plants.push({...node, ...obj});
     });
+    console.log(plants)
   };
 
   const setParentWidth = () => {
@@ -87,6 +90,7 @@ const hmpShelf = (images, sticky, restriction, className) => {
     plants.forEach((plant) => {
       if (target > plant.target) {
         plant.node.classList.add('animated');
+        console.log(plant)
         remove.push(plant);
       }
     });
