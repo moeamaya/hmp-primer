@@ -1,6 +1,6 @@
 {
   "name": "hmp-primer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Code for HMP",
   "scripts": {
     "build": "node utils/build.js",
