@@ -57,12 +57,86 @@
       }
       .cale .pos {
         position: absolute;
-        top: -75px;
+        top: -80px;
         left: 20px;
         width: 180px;
         height: 240px;
         perspective: 800px;
+        transform-origin: 50% -8px;
+        animation: rotate 1s infinite alternate
+          cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
+      @keyframes rotate {
+        0% {
+          transform: rotate(-1.5deg);
+        }
+        100% {
+          transform: rotate(0.5deg);
+        }
+      }
+      .cale .ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+      .cale .ring:before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 0;
+        width: 2px;
+        height: 16px;
+        background: var(--black);
+        border-radius: 2px;
+      }
+      .cale .ring:after {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 4px;
+        width: 2px;
+        height: 16px;
+        background: var(--black);
+        border-radius: 2px;
+      }
+      .cale .ring:nth-child(1) {
+        left: 1%;
+      }
+      .cale .ring:nth-child(2) {
+        left: 8%;
+      }
+      .cale .ring:nth-child(3) {
+        left: 15%;
+      }
+      .cale .ring:nth-child(4) {
+        left: 22%;
+      }
+      .cale .ring:nth-child(5) {
+        left: 29%;
+      }
+      .cale .ring:nth-child(6) {
+        left: 36%;
+      }
+      .cale .ring:nth-child(7) {
+        left: 62%;
+      }
+      .cale .ring:nth-child(8) {
+        left: 69%;
+      }
+      .cale .ring:nth-child(9) {
+        left: 76%;
+      }
+      .cale .ring:nth-child(10) {
+        left: 83%;
+      }
+      .cale .ring:nth-child(11) {
+        left: 90%;
+      }
+      .cale .ring:nth-child(12) {
+        left: 97%;
+      }
+
       .cale .cover {
         position: absolute;
         top: 0;
@@ -128,6 +202,23 @@
       .cale:hover .cover {
         transform: rotateX(100deg);
       }
+      .cale:hover .nail {
+        animation: hide 1s forwards;
+      }
+      @keyframes hide {
+        0% {
+          opacity: 1;
+        }
+        20% {
+          opacity: 1;
+        }
+        55% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
       .cale .base {
         position: absolute;
         top: 0;
@@ -164,6 +255,61 @@
         width: 80%;
         height: 35%;
       }
+      .cale .hanger {
+        position: absolute;
+        top: -18px;
+        left: 76px;
+        width: 24px;
+        height: 12px;
+        background-color: transparent;
+        border-top-left-radius: 110px;
+        border-top-right-radius: 110px;
+        border: 3px solid var(--black);
+        border-bottom: 0;
+        z-index: 1;
+      }
+      .cale .hanger:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -50px;
+        width: 50px;
+        height: 2px;
+        background-color: var(--black);
+        border-radius: 1px;
+      }
+      .cale .hanger:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: -50px;
+        width: 50px;
+        height: 2px;
+        background-color: var(--black);
+        border-radius: 1px;
+      }
+      .cale .nail {
+        position: absolute;
+        top: -106px;
+        left: 98px;
+        width: 6px;
+        height: 6px;
+        background-color: var(--chartreuse);
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .cale .nail:before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 3px;
+        width: 12px;
+        height: 2px;
+        background-color: var(--chartreuse);
+        border-radius: 2px;
+        transform: rotate(45deg);
+      }
+
       .cale .content {
         padding: 20px;
       }
@@ -180,7 +326,7 @@
       }
       .cale .cta {
         color: var(--red);
-        font-size: 36px;
+        font-size: 30px;
         font-family: Hellenic;
         font-style: italic;
         font-weight: bold;
@@ -262,6 +408,9 @@
         const pos = document.createElement("div");
         pos.classList.add("pos");
 
+        const hanger = document.createElement("div");
+        hanger.classList.add("hanger");
+
         const cover = document.createElement("div");
         cover.classList.add("cover");
         const border = document.createElement("div");
@@ -275,8 +424,19 @@
         border2.classList.add("border");
         base.appendChild(border2);
 
+        for (var i = 0; i < 12; i++) {
+          const ring = document.createElement("div");
+          ring.classList.add("ring");
+          pos.appendChild(ring);
+        }
+        const nail = document.createElement("div");
+        nail.classList.add("nail");
+
+        pos.appendChild(hanger);
         pos.appendChild(base);
         pos.appendChild(cover);
+
+        cal.appendChild(nail);
         cal.appendChild(pos);
 
         const content = document.createElement("div");
@@ -287,7 +447,7 @@
         `;
 
         const cta = document.createElement("button");
-        cta.innerText = "Peep it";
+        cta.innerText = "Check it out";
         cta.classList.add("cta");
 
         const close = document.createElement("button");
