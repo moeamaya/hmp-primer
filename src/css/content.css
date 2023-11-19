@@ -20,6 +20,20 @@
   src: url(https://uploads-ssl.webflow.com/5f4e8114a9640d4aa2c637c4/5f4ffc8897279e9dcc750d9b_HellenicTypewriter-MediumItalic.woff);
 }
 
+:root {
+  --black: #222;
+  --off-white: #f9f5f1;
+  --white: #fffef9;
+  --chartreuse: #bfb33b;
+  --emerald: #025050;
+  --plant-bg: #ede5dd;
+  --ochre: #dd9221;
+  --terracotta: #fad2bd;
+  --lilac: #e8d1eb;
+  --blue: #2f6fe8;
+  --red: #f87a5a;
+  --sage: #d1ddd1;
+}
 
 
 body {

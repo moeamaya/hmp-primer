@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./dev/css/content.css" />
+  </head>
+
+  <body>
+    <section class="hero" style="min-height: 110vh">
+      <h1>How Many Plants</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </section>
+
+    <footer>
+      <h2 style="margin: 0">Title</h2>
+    </footer>
+
+    <style>
+      :root {
+        --radial: radial-gradient(
+          circle at 50% 0%,
+          transparent 0,
+          transparent 18px,
+          black 18px
+        );
+      }
+
+      .cale {
+        position: fixed;
+        width: 500px;
+        bottom: 30px;
+        right: 20px;
+        background: var(--chartreuse);
+        border: 1px solid var(--black);
+        font-family: Hellenic;
+        font-weight: normal;
+        text-decoration: none;
+        color: inherit;
+        /* box-shadow: 12px 12px 0 0 var(--terracotta); */
+      }
+      .cale .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-template-areas: "content content";
+      }
+      .cale .cal {
+        position: relative;
+      }
+      .cale .pos {
+        position: absolute;
+        top: -75px;
+        left: 20px;
+        width: 180px;
+        height: 240px;
+        perspective: 800px;
+      }
+      .cale .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotateX(19deg);
+        /* transform: rotateX(100deg); */
+        transform-origin: top;
+        transform-style: preserve-3d;
+        transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        z-index: 1;
+      }
+      .cale .cover:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid var(--black);
+        background: var(--off-white);
+        background-image: url("https://uploads-ssl.webflow.com/5f4e8114a9640d4aa2c637c4/6557f67be949ecda2bd378f4_year.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        backface-visibility: hidden;
+        -webkit-mask-image: var(--radial);
+        white-space: pre;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--chartreuse);
+      }
+      .cale .cover:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotateY(180deg);
+        background: var(--off-white);
+        border: 1px solid var(--black);
+        backface-visibility: hidden;
+        -webkit-mask-image: var(--radial);
+      }
+      .cale .border {
+        position: absolute;
+        top: 0;
+        left: 72px;
+        width: 36px;
+        height: 18px;
+        background-color: transparent;
+        border-bottom-left-radius: 110px;
+        border-bottom-right-radius: 110px;
+        border: 1px solid var(--black);
+        border-top: 0;
+        z-index: 1;
+      }
+      .cale:hover {
+        cursor: pointer;
+      }
+      .cale:hover .cover {
+        transform: rotateX(100deg);
+      }
+      .cale .base {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .cale .base:before {
+        content: "January";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid var(--black);
+        background: var(--off-white);
+        backface-visibility: hidden;
+        -webkit-mask-image: var(--radial);
+        background-image: url("https://uploads-ssl.webflow.com/5f4e8114a9640d4aa2c637c4/6557f894cd2e8c69b3de4be6_abstract.jpg");
+        background-position: top center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 1em;
+      }
+      .cale .base:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 10%;
+        border: 1px solid var(--black);
+        width: 80%;
+        height: 35%;
+      }
+      .cale .content {
+        padding: 20px;
+      }
+      .cale h2 {
+        color: var(--plant-bg);
+        margin: 0;
+        font-style: italic;
+        font-weight: bold;
+      }
+      .cale h3 {
+        color: var(--sage);
+        margin: 0;
+        font-weight: normal;
+      }
+      .cale .cta {
+        color: var(--red);
+        font-size: 36px;
+        font-family: Hellenic;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        width: 260px;
+        margin-top: 0.25em;
+        background: var(--off-white);
+        box-shadow: 6px 6px 0 0 var(--emerald);
+        border: 1px solid var(--black);
+        padding: 8px 0;
+        transition: box-shadow 0.2s ease-in-out;
+        cursor: pointer;
+      }
+      .cale .cta:hover {
+        background: var(--off-white);
+        box-shadow: 8px 8px 0 0 var(--emerald);
+      }
+      .cale .close {
+        position: absolute;
+        top: -16px;
+        right: -16px;
+        width: 36px;
+        height: 36px;
+        border-radius: 18px;
+        border: 1px solid var(--black);
+        font-family: Hellenic;
+        cursor: pointer;
+      }
+    </style>
+
+    <script>
+      const caleBuilder = () => {
+        let HIDE_CALE = false;
+
+        function is24HoursPassed(lastTime) {
+          const currentTime = new Date().getTime();
+          const timeDifference = currentTime - parseInt(lastTime);
+
+          const hours24 = 24 * 60 * 60 * 1000;
+          const minute = 60 * 1000;
+          return timeDifference >= minute;
+        }
+
+        const lastClosed = localStorage.getItem("caleLastClosed");
+        if (lastClosed && !is24HoursPassed(lastClosed)) {
+          const check = is24HoursPassed(lastClosed);
+          HIDE_CALE = true;
+        }
+
+        // Don't run the builder unless it's been 24hours since
+        // the last close of cale
+        if (HIDE_CALE) return;
+
+        const cale = document.createElement("a");
+        cale.href = "https://howmanyplants.com/calendar";
+        cale.classList.add("cale");
+
+        cale.onclick = (e) => {
+          e.preventDefault();
+          console.log("clicked", e);
+
+          if (e.target.classList.contains("close")) {
+            localStorage.setItem(
+              "caleLastClosed",
+              new Date().getTime().toString()
+            );
+            cale.remove();
+          } else {
+            window.open(cale.href, "_blank");
+          }
+        };
+
+        const grid = document.createElement("div");
+        grid.classList.add("grid");
+
+        const cal = document.createElement("div");
+        cal.classList.add("cal");
+
+        const pos = document.createElement("div");
+        pos.classList.add("pos");
+
+        const cover = document.createElement("div");
+        cover.classList.add("cover");
+        const border = document.createElement("div");
+        border.classList.add("border");
+        cover.appendChild(border);
+
+        const base = document.createElement("div");
+        base.classList.add("base");
+        base.innerHTML = "January";
+        const border2 = document.createElement("div");
+        border2.classList.add("border");
+        base.appendChild(border2);
+
+        pos.appendChild(base);
+        pos.appendChild(cover);
+        cal.appendChild(pos);
+
+        const content = document.createElement("div");
+        content.classList.add("content");
+        content.innerHTML = `
+          <h2>HMP</h2>
+          <h3>Appt. Calendar</h3>
+        `;
+
+        const cta = document.createElement("button");
+        cta.innerText = "Peep it";
+        cta.classList.add("cta");
+
+        const close = document.createElement("button");
+        close.innerText = "X";
+        close.classList.add("close");
+
+        content.appendChild(cta);
+
+        grid.appendChild(cal);
+        grid.appendChild(content);
+
+        cale.appendChild(grid);
+        cale.appendChild(close);
+
+        document.body.appendChild(cale);
+      };
+      caleBuilder();
+    </script>
+  </body>
+</html>

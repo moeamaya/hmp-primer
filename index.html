@@ -76,6 +76,8 @@
 
 <script src="./dev/js/content.js"></script>
 <script>
+  //
+
   const images = [
     {image: "moneytree"},
     {image: "snakeplant"},
@@ -99,7 +101,9 @@
   ]
   const sticky = document.querySelector('.sticky');
   const restriction = document.querySelector('.plants');
-  hmpShelf(images, sticky, restriction, '.plant-sticky-plant');
+
+  const tabletBreakpoint = window.matchMedia('(min-width: 992px)').matches;
+  if (tabletBreakpoint) hmpShelf(images, sticky, restriction, '.plant-sticky-plant');
 
 
 </script>
