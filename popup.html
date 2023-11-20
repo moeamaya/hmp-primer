@@ -282,7 +282,7 @@
       }
       .cale .hanger {
         position: absolute;
-        top: -18px;
+        top: -16px;
         left: 76px;
         width: 24px;
         height: 12px;
@@ -336,13 +336,13 @@
       }
       @media screen and (min-width: 768px) {
         .cale .nail {
-          top: -98px;
+          top: -96px;
           left: 96px;
         }
       }
 
       .cale .content {
-        padding: 10px 14px 20px;
+        padding: 10px 4px 20px 24px;
       }
       @media screen and (min-width: 768px) {
         .cale .content {
@@ -402,6 +402,9 @@
         border: 1px solid var(--black);
         font-family: Hellenictypewriter;
         cursor: pointer;
+        line-height: 1.65;
+        background: var(--off-white);
+        text-align: center;
       }
       @media screen and (min-width: 768px) {
         .cale .close {
@@ -423,7 +426,7 @@
 
           const hours24 = 24 * 60 * 60 * 1000;
           const minute = 60 * 1000;
-          return timeDifference >= minute;
+          return timeDifference >= hours24;
         }
 
         const lastClosed = localStorage.getItem("caleLastClosed");
@@ -475,7 +478,6 @@
 
         const base = document.createElement("div");
         base.classList.add("base");
-        base.innerHTML = "January";
         const border2 = document.createElement("div");
         border2.classList.add("border");
         base.appendChild(border2);
@@ -506,7 +508,7 @@
         cta.innerText = "Check it out";
         cta.classList.add("cta");
 
-        const close = document.createElement("button");
+        const close = document.createElement("div");
         close.innerText = "X";
         close.classList.add("close");
 
