@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" href="./dev/css/content.css" />
   </head>
 
@@ -34,9 +35,10 @@
 
       .cale {
         position: fixed;
-        width: 500px;
-        bottom: 30px;
+        width: calc(100% - 40px);
+        bottom: 20px;
         right: 20px;
+        left: 20px;
         background: var(--chartreuse);
         border: 1px solid var(--black);
         font-family: Hellenic;
@@ -44,6 +46,14 @@
         text-decoration: none;
         color: inherit;
         /* box-shadow: 12px 12px 0 0 var(--terracotta); */
+      }
+      @media screen and (min-width: 768px) {
+        .cale {
+          width: 500px;
+          bottom: 30px;
+          right: 20px;
+          left: auto;
+        }
       }
       .cale .grid {
         display: grid;
@@ -57,14 +67,24 @@
       }
       .cale .pos {
         position: absolute;
-        top: -80px;
-        left: 20px;
+        top: -21px;
+        left: -10px;
         width: 180px;
         height: 240px;
         perspective: 800px;
+        scale: 0.65;
         transform-origin: 50% -8px;
         animation: rotate 1s infinite alternate
           cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      @media screen and (min-width: 768px) {
+        .cale .pos {
+          top: -80px;
+          left: 20px;
+          width: 180px;
+          height: 240px;
+          scale: 1;
+        }
       }
       @keyframes rotate {
         0% {
@@ -290,8 +310,8 @@
       }
       .cale .nail {
         position: absolute;
-        top: -106px;
-        left: 98px;
+        top: -45px;
+        left: 67px;
         width: 6px;
         height: 6px;
         background-color: var(--chartreuse);
@@ -309,10 +329,22 @@
         border-radius: 2px;
         transform: rotate(45deg);
       }
+      @media screen and (min-width: 768px) {
+        .cale .nail {
+          top: -106px;
+          left: 98px;
+        }
+      }
 
       .cale .content {
-        padding: 20px;
+        padding: 10px 14px 20px;
       }
+      @media screen and (min-width: 768px) {
+        .cale .content {
+          padding: 20px;
+        }
+      }
+
       .cale h2 {
         color: var(--plant-bg);
         margin: 0;
@@ -326,12 +358,12 @@
       }
       .cale .cta {
         color: var(--red);
-        font-size: 30px;
+        font-size: 18px;
         font-family: Hellenic;
         font-style: italic;
         font-weight: bold;
         text-align: center;
-        width: 260px;
+        width: 160px;
         margin-top: 0.25em;
         background: var(--off-white);
         box-shadow: 6px 6px 0 0 var(--emerald);
@@ -340,20 +372,35 @@
         transition: box-shadow 0.2s ease-in-out;
         cursor: pointer;
       }
-      .cale .cta:hover {
-        background: var(--off-white);
-        box-shadow: 8px 8px 0 0 var(--emerald);
+      @media screen and (min-width: 768px) {
+        .cale .cta {
+          font-size: 30px;
+          width: 260px;
+        }
+        .cale .cta:hover {
+          background: var(--off-white);
+          box-shadow: 8px 8px 0 0 var(--emerald);
+        }
       }
+
       .cale .close {
         position: absolute;
         top: -16px;
         right: -16px;
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
         border-radius: 18px;
         border: 1px solid var(--black);
         font-family: Hellenic;
         cursor: pointer;
+      }
+      @media screen and (min-width: 768px) {
+        .cale .close {
+          top: -16px;
+          right: -16px;
+          width: 36px;
+          height: 36px;
+        }
       }
     </style>
 
